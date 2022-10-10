@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -36,8 +37,9 @@ class ProductController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'quantity'=>'required',
-            'price' => 'required',
+            'quantity'=>'required|numeric',
+            'price' => 'required|numeric',
+            'image' =>'required',
             'description'=> 'required',
             'status'=>'required'
         ]);
@@ -47,6 +49,10 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
         $product->status  = $request->status;
+
+        $imageName = Carbon::now()->timestamp.'.'.$request->image->extension();
+        $request->image->storeAs('products',$imageName);
+        $product->image = $imageName;
         $product->save();
         return response()->json(['message'=>'Product Added Successfully'],200);
     }
@@ -111,6 +117,15 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product= Product::find($id);
+        if($product)
+        {
+            $product->delete();
+             return response()->json(['message'=>'Delete Product Successfully']);
+        }
+        else
+        {
+            return response()->json(['message','No Product Found']);
+        }
     }
 }
