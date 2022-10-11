@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,8 @@ Route::delete('products/{id}',[ProductController::class,'destroy']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('logout',[AuthController::class,'logout']);
 });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return "Login success!!!" ;
+});
+Route::post('reset-password', [ResetPasswordController::class,'sendMail']);
+Route::put('reset-password/{token}', [ResetPasswordController::class,'reset']);
