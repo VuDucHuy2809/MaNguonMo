@@ -33,9 +33,116 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  new WOW().init();
 </script>
 <!-- //animation-effect -->
+
+<!-- Snow -->
+<script type="text/javascript" src="snow.js"> </script>
+
+<!-- Snow -->
+
+
 </head>
 	
 <body>
+
+
+<!--snow -->
+<div id="closeit" style="border: 0 !important;"><script type="text/javascript">
+var textSpeed = 2;
+var contentWidth;
+var contentHeight;
+var xMax;
+var yMax;
+var xPos = 0;
+var yPos = 0;
+var xDir = ‘right’;
+var yDir = ‘down’;
+function initializeText(){
+if (typeof window.innerWidth != ‘undefined’){
+xMax = window.innerWidth;yMax = window.innerHeight;
+}
+elseif (typeof document.documentElement != ‘undefined’ && typeof document.documentElement.clientWidth != ‘undefined’ && document.documentElement.clientWidth != 0)
+{
+xMax = document.documentElement.clientWidth;
+yMax = document.documentElement.clientHeight;
+}
+else
+{
+xMax = document.getElementsByTagName(‘body’)[0].clientWidth;
+yMax = document.getElementsByTagName(‘body’)0].clientHeight;
+}
+var supertext = document.getElementById(‘supertext’);
+contentWidth = supertext.offsetWidth;
+contentHeight = supertext.offsetHeight;
+setTimeout(‘moveText()’, 400);
+}
+function moveText(){
+var supertext = document.getElementById(‘supertext’);
+calculatePosition();supertext.style.left = xPos + document.body.scrollLeft + "px";supertext.style.top = yPos + document.body.scrollTop + "px";
+animatetext = setTimeout(‘moveText()’, 20);
+}
+function calculatePosition()
+{
+if (xDir == "right")
+{
+if (xPos > (xMax – contentWidth – textSpeed))
+{
+xDir = "left";
+}
+}
+elseif (xDir == "left")
+{
+if (xPos < (0 + textSpeed))
+{
+xDir = "right";
+}
+}
+if (yDir == "down")
+{
+if (yPos > (yMax – contentHeight – textSpeed))
+{
+yDir = "up";
+}
+}
+elseif (yDir == "up")
+{
+if (yPos < (0 + textSpeed))
+{
+yDir = "down";
+}
+}
+if (xDir == "right")
+{
+xPos = xPos + textSpeed;
+}
+elseif (xDir == "left")
+{
+xPos = xPos – textSpeed;
+}
+else{xPos = xPos;
+}
+if (yDir == "down")
+{
+yPos = yPos + textSpeed;
+}
+elseif (yDir == "up")
+{
+yPos = yPos – textSpeed;
+}
+else{yPos = yPos;
+}
+}
+setTimeout(‘initializeText()’, 700);
+function closebandera()
+{
+div = document.getElementById(‘closeit’);
+div.style.display=’none’;
+}
+setTimeout(closebandera, 13000);
+</script>
+
+
+<!--Snow -->
+
 <!-- header -->
 	<div class="header">
 		<div class="container">
