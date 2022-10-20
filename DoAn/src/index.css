@@ -11,10 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-@import url("./boostrap5/css/animate.min.css");
+/* @import url("./boostrap5/css/animate.min.css");
 @import url("./boostrap5/css/bootstrap.css");
 @import url("./boostrap5/css/flexslider.css");
 @import url("./boostrap5/css/jquery-ui.css");
 @import url("./boostrap5/css/jquery.countdown.css");
-@import url("./boostrap5/css/style.css");
+@import url("./boostrap5/css/style.css"); */
+@import url("./bs5/css/animate.min.css");
+@import url("./bs5/css/flexslider.css");
+@import url("./bs5/css/bootstrap.css");
+@import url("./bs5/css/jquery-ui.css");
+@import url("./bs5/css/jquery.countdown.css");
+@import url("./bs5/css/style.css");
+@import url("./components/mainpages/products/product.css");
+@import url("./components/err/loading.css");
+
+.btnAdd {
+  display: inline-block;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
 

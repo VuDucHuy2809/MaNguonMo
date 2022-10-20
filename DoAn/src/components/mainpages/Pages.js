@@ -6,19 +6,19 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import Mail from './contact/Mail'
 import About from './contact/About'
-import Chekout from './cart/chekout'
+import Chekout from './cart/Chekout'
+import ProductDetail from './products/ProductDetail'
 function Pages() {
   return (
     <Routes>
       <Route path='/' element={<Products />} />
       <Route path='/products' element={<ProductsMain />} />
-      <Route path='/login' element={<Login />} />
+      <Route path='/products/:slug' element={<ProductDetail />} />
+      <Route path='/signin' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/about' element={<About />} />
       <Route path='/mail' element={<Mail />} />
       <Route path='/checkout' element={<Chekout />}/>
-      
-
     </Routes>
   )
 }

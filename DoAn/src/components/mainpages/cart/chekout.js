@@ -1,6 +1,31 @@
-import React from 'react'
+import axios from 'axios';
+import React, {useEffect, useState, useReducer, useContext } from 'react'
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import {Store} from '../../../Store'
 
-function chekout() {
+function Chekout() {
+  const navigate = useNavigate();
+  const {state, dispatch: ctxDispatch} = useContext(Store);
+  const {
+    cart: { cartItems },
+  } = state ;
+  const updateCartHandler = async (item, quantity) => {
+    const { data } = await axios.get(`/api/products/${item._id}`);
+    if(data.countInStock < quantity ) {
+        window.alert('Sorry. product is out of stock');
+        return ;
+    }
+    ctxDispatch({
+      type: 'CART_ADD_ITEM',
+      payload: {...item,quantity},
+    });
+  }
+  const removeItemHandler = (item) => {
+    ctxDispatch({ type: 'CART_REMOVE_ITEM', payload: item });
+  };
+  const checkoutHandler = () => {
+    navigate('/signin?redirect=/shipping');
+  };
   return (
     <div>
       <div class="breadcrumbs">
@@ -27,119 +52,54 @@ function chekout() {
                   <th>Remove</th>
                 </tr>
               </thead>
-              <tr class="rem1">
-                <td class="invert">1</td>
-                <td class="invert-image"><a href="single.html"><img src="images/22.jpg" alt=" " class="img-responsive" /></a></td>
-                <td class="invert">
-                  <div class="quantity"> 
-                    <div class="quantity-select">                           
-                      <div class="entry value-minus">&nbsp;</div>
-                      <div class="entry value"><span>1</span></div>
-                      <div class="entry value-plus active">&nbsp;</div>
-                    </div>
-                  </div>
-                </td>
-                <td class="invert">Black Shoe</td>
-                <td class="invert">$5.00</td>
-                <td class="invert">$290.00</td>
-                <td class="invert">
-                  <div class="rem">
-                    <div class="close1"> </div>
-                  </div>
-                  {/* <script>$(document).ready(function(c) {
-                    $('.close1').on('click', function(c){
-                      $('.rem1').fadeOut('slow', function(c){
-                        $('.rem1').remove();
-                      });
-                      });	  
-                    });
-                  </script> */}
-                </td>
-              </tr>
-              <tr class="rem2">
-                <td class="invert">2</td>
-                <td class="invert-image"><a href="single.html"><img src="images/30.jpg" alt=" " class="img-responsive" /></a></td>
-                <td class="invert">
-                  <div class="quantity"> 
-                    <div class="quantity-select">                           
-                      <div class="entry value-minus">&nbsp;</div>
-                      <div class="entry value"><span>1</span></div>
-                      <div class="entry value-plus active">&nbsp;</div>
-                    </div>
-                  </div>
-                </td>
-                <td class="invert">Centre Table</td>
-                <td class="invert">$5.00</td>
-                <td class="invert">$250.00</td>
-                <td class="invert">
-                  <div class="rem">
-                    <div class="close2"> </div>
-                  </div>
-                  {/* <script>$(document).ready(function(c) {
-                    $('.close2').on('click', function(c){
-                      $('.rem2').fadeOut('slow', function(c){
-                        $('.rem2').remove();
-                      });
-                      });	  
-                    });
-                  </script> */}
-                </td>
-              </tr>
-              <tr class="rem3">
-                <td class="invert">3</td>
-                <td class="invert-image"><a href="single.html"><img src="images/11.jpg" alt=" " class="img-responsive" /></a></td>
-                <td class="invert">
-                  <div class="quantity"> 
-                    <div class="quantity-select">                           
-                      <div class="entry value-minus">&nbsp;</div>
-                      <div class="entry value"><span>1</span></div>
-                      <div class="entry value-plus active">&nbsp;</div>
-                    </div>
-                  </div>
-                </td>
-                <td class="invert">Stone Bangles</td>
-                <td class="invert">$5.00</td>
-                <td class="invert">$299.00</td>
-                <td class="invert">
-                  <div class="rem">
-                    <div class="close3"> </div>
-                  </div>
-                  {/* <script>$(document).ready(function(c) {
-                    $('.close3').on('click', function(c){
-                      $('.rem3').fadeOut('slow', function(c){
-                        $('.rem3').remove();
-                      });
-                      });	  
-                    });
-                  </script> */}
-                </td>
-              </tr>
-                      {/* <script>
-                      $('.value-plus').on('click', function(){
-                        var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
-                        divUpd.text(newVal);
-                      });
-
-                      $('.value-minus').on('click', function(){
-                        var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
-                        if(newVal>=1) divUpd.text(newVal);
-                      });
-                      </script> */}
+              {cartItems.length === 0 ? (
+                <div>Cart is emty. <Link to="/">Go shopping</Link></div>
+              ):
+              ( 
+                <>
+                  {cartItems.map((item) => (
+                    <tr key={item._id} class="rem1">
+                      <td class="invert">1</td>
+                      <td class="invert-image"><Link to="/"><img src={item.image} alt=" " class="img-responsive" /></Link></td>
+                      <td class="invert">
+                        <div class="quantity"> 
+                          <div class="quantity-select">                           
+                            <button class="entry value" onClick={() => updateCartHandler(item,item.quantity - 1)} disabled={item.quantity === 1} class="entry value-minus">&nbsp;</button>
+                            <div class="entry value"><span>{item.quantity}</span></div>
+                            <button onClick={() => updateCartHandler(item,item.quantity + 1)} disabled={item.quantity === item.countStock} class="entry value-plus active">&nbsp;</button>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="invert">{item.name}</td>
+                      <td class="invert">$5.00</td>
+                      <td class="invert">{item.price}</td>
+                      <td class="invert">
+                        <div class="rem">
+                          <button className='btnAdd' onClick={() => removeItemHandler(item)}>
+                            <i class="fa-solid fa-trash"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}      
+                </>
+              )}
             </table>
           </div>
           <div class="checkout-left">	
             <div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
               <h4>Continue to basket</h4>
+                <ul>
+                  {cartItems.map((item) => (
+                    <li>{item.name} <i>x{item.quantity}</i> <span>${item.price * item.quantity} </span></li>
+                  ))}
+                </ul>
               <ul>
-                <li>Product1 <i>-</i> <span>$250.00 </span></li>
-                <li>Product2 <i>-</i> <span>$290.00 </span></li>
-                <li>Product3 <i>-</i> <span>$299.00 </span></li>
-                <li>Total Service Charges <i>-</i> <span>$15.00</span></li>
-                <li>Total <i>-</i> <span>$854.00</span></li>
+                <li>Total <i>-</i> <span>${cartItems.reduce((a, c)=> a+ c.price * c.quantity, 0)}</span></li>
               </ul>
             </div>
             <div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
-              <a href="single.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping</a>
+              <button disabled={cartItems.length === 0} onClick={checkoutHandler} className='btnAdd'><a><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping</a></button>
             </div>
             <div class="clearfix"> </div>
           </div>
@@ -149,4 +109,4 @@ function chekout() {
   )
 }
 
-export default chekout
+export default Chekout

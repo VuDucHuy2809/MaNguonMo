@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {Link} from 'react-router-dom'
-
+import { Store } from '../../Store';
 
 function Header() {
+	const {state} = useContext(Store);
+	const {cart} = state;
   return (
     <div>
 		<div className="header">
@@ -124,15 +126,15 @@ function Header() {
 					<div className="logo-nav-right">
 						<div className="search-box">
 							<div id="sb-search" className="sb-search">
-								{/* <form>
-									<input className="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
-									<input className="sb-search-submit" type="submit" value="">
+								<form>
+									<input className="sb-search-input" placeholder="Enter your search term..." type="search" id="search"/>
+									<input className="sb-search-submit" type="submit" value=""/>
 									<span className="sb-icon-search"> </span>
-								</form> */}
+								</form>
 							</div>
 						</div>
-							<script src="js/classNameie.js"></script>
-							<script src="js/uisearch.js"></script>
+							<script src="../../bs5/js/classNameic"></script>
+							<script src="../../bs5/js/js/uisearch"></script>
 								<script>
 									new UISearch( document.getElementById( 'sb-search' ) );
 								</script>
@@ -141,7 +143,8 @@ function Header() {
 						<div className="cart box_1">
 							<Link to="/checkout">
 								<h3> <div className="total">
-									<span className="simpleCart_total"></span> (<span id="simpleCart_quantity" className="simpleCart_quantity"></span> items)</div>
+									<span>${cart.cartItems.reduce((a, c) => a + c.price + c.quantity, 0)}</span>
+									({cart.cartItems.length >0 && (<span>{cart.cartItems.reduce((a, c) => a + c.quantity, 0)} item</span>)})</div>
 									<img src="images/bag.png" alt="" />
 								</h3>
 							</Link>
@@ -153,6 +156,61 @@ function Header() {
 				</div>
 			</div>
 		</div>
+		<div>
+			<div className="banner-bottom">
+				<div className="container"> 
+					<div className="banner-bottom-grids">
+						<div className="banner-bottom-grid-left animated wow slideInLeft" data-wow-delay=".5s">
+							<div className="grid">
+								<figure className="effect-julia">
+									<img src="images/4.jpg" alt=" " className="img-responsive" />
+									<figcaption>
+										<h3>Best <span>Store</span><i> in online shopping</i></h3>
+										<div>
+											<p>Cupidatat non proident, sunt</p>
+											<p>Officia deserunt mollit anim</p>
+											<p>Laboris nisi ut aliquip consequat</p>
+										</div>
+									</figcaption>			
+								</figure>
+							</div>
+						</div>
+						<div className="banner-bottom-grid-left1 animated wow slideInUp" data-wow-delay=".5s">
+							<div className="banner-bottom-grid-left-grid left1-grid grid-left-grid1">
+								<div className="banner-bottom-grid-left-grid1">
+									<img src="images/1.jpg" alt=" " className="img-responsive" />
+								</div>
+								<div className="banner-bottom-grid-left1-pos">
+									<p>Discount 45%</p>
+								</div>
+							</div>
+							<div className="banner-bottom-grid-left-grid left1-grid grid-left-grid1">
+								<div className="banner-bottom-grid-left-grid1">
+									<img src="images/2.jpg" alt=" " className="img-responsive" />
+								</div>
+								<div className="banner-bottom-grid-left1-position">
+									<div className="banner-bottom-grid-left1-pos1">
+										<p>Latest New Collections</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div className="banner-bottom-grid-right animated wow slideInRight" data-wow-delay=".5s">
+							<div className="banner-bottom-grid-left-grid grid-left-grid1">
+								<div className="banner-bottom-grid-left-grid1">
+									<img src="/images/3.jpg" alt=" " className="img-responsive" />
+								</div>
+								<div className="grid-left-grid1-pos">
+									<p>top and classNameic designs <span>2022 Collection</span></p>
+								</div>
+							</div>
+						</div>
+						<div className="clearfix"> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 	</div>
   )
 }

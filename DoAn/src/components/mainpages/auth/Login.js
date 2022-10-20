@@ -1,7 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 function Login() {
+    const { search } = useLocation();
+    const redirectInUrl = new URLSearchParams(search).get('redirect');
+    const redirect = redirectInUrl ? redirectInUrl : '/';
   return (
     <div>
         <div class="login">
@@ -11,10 +14,11 @@ function Login() {
                     deserunt mollit anim id est laborum.</p>
                 <div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
                     <form >
-                        <input type="email" placeholder="Email Address" required=" "/>
-                        <input type="password" placeholder="Password" required=" "/>
+                        <input type="email" placeholder="Email Address" required=" " controlId="email"/>
+                        <input type="password" placeholder="Password" required=" " controlId="password"/>
                         <div class="forgot">
                             <Link to="/forgotpass">Forgot Password?</Link>
+                            <Link to={`/signup?redirect=${redirect}`}>Create New Account?</Link>
                         </div>
                         <input type="submit" value="Login"/>
                     </form>
