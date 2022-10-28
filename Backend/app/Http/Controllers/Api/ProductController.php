@@ -63,6 +63,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /*public function pagination($page)
+    {
+        $product=Product::paginate(2);
+        return response()->json(['products'=>$product],200);
+    }*/
     public function show($id)
     {
         $products=Product::find($id);
@@ -91,8 +96,9 @@ class ProductController extends Controller
             'price' => 'required',
             'description'=> 'required',
             'status'=>'required'
-        ]);
+        ]); 
         $product= Product::find($id);
+        //return response()->json(['message'=>'Product Update  Successfully'],200);
         if($product)
         {
             $product->name = $request->name;
@@ -101,7 +107,7 @@ class ProductController extends Controller
             $product->description = $request->description;
             $product->status  = $request->status;
             $product->update();
-            return response()->json(['message'=>'Product Update  Successfully'],200);
+            return response()->json(['message'=>'Product Update  Successfully','test'=> $request->name],200);
         }
         else
         {
