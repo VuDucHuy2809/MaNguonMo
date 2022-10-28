@@ -6,9 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
+use PhpParser\Node\Stmt\TryCatch;
 class ProductController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -54,6 +59,8 @@ class ProductController extends Controller
         // $imageName = Carbon::now()->timestamp.'.'.$request->image->extension();
         // $request->image->storeAs('products',$imageName);
         // $product->image = $imageName;
+        $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+        $product->image=$response;
         $product->save();
         return response()->json(['message'=>'Product Added Successfully'],200);
     }

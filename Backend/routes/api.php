@@ -45,9 +45,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('reset-password', [ResetPasswordController::class,'sendMail']);
 Route::put('reset-password/{token}', [ResetPasswordController::class,'reset']);
 
-Route::post('/upload-image',[Controller::class,'uploadImage']); 
+// Route::post('/upload-image',[Controller::class,'uploadImage']); 
 
 Route::get('categories',[CategoryController::class,'index']);
 Route::get('subcategories',[SubcategoryController::class,'index']);
 
-Route::post('auth/google',[GoogleAuthController::class,'redirect']);
+// Route::post('auth/google',[GoogleAuthController::class,'redirect']);
