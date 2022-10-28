@@ -16,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        // $products = Product::all();
+        $products=Product::paginate(6);
         if($products)
         {
             return response()->json(['products'=>$products],200);
@@ -50,9 +51,9 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->status  = $request->status;
 
-        $imageName = Carbon::now()->timestamp.'.'.$request->image->extension();
-        $request->image->storeAs('products',$imageName);
-        $product->image = $imageName;
+        // $imageName = Carbon::now()->timestamp.'.'.$request->image->extension();
+        // $request->image->storeAs('products',$imageName);
+        // $product->image = $imageName;
         $product->save();
         return response()->json(['message'=>'Product Added Successfully'],200);
     }
@@ -101,7 +102,7 @@ class ProductController extends Controller
             $product->description = $request->description;
             $product->status  = $request->status;
             $product->update();
-            return response()->json(['message'=>'Product Update  Successfully'],200);
+            return response()->json(['message'=>'Product Update Successfully'],200);
         }
         else
         {
@@ -128,4 +129,8 @@ class ProductController extends Controller
             return response()->json(['message','No Product Found']);
         }
     }
+    // public function paginateProduct($page)
+    // {
+        
+    // }
 }
