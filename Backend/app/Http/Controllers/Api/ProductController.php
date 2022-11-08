@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\AttributeValue;
 use App\Models\Product;
+use App\Models\ProductAttribute;
+use ArrayObject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    
+    public $temp;
     /**
      * Display a listing of the resource.
      *
@@ -151,8 +154,16 @@ class ProductController extends Controller
             return response()->json(['message','No Product Found']);
         }
     }
-    // public function paginateProduct($page)
-    // {
+    public function test()
+    {
+        $color=[3,5];
+        $p=new ArrayObject();
+        // $products = Product::whereHas('attributeValues',function($query){
+        //     $query->whereIn('value', [3,5]);
+        // })->get();        
+        // return $products;
+        $proAttribute = ProductAttribute::has('products')->get();    
+        return $proAttribute;
         
-    // }
+    }
 }

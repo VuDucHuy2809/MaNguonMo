@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\GoogleAuthController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\api\ProductAttributeController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ResetPasswordController;
@@ -51,3 +52,9 @@ Route::get('categories',[CategoryController::class,'index']);
 Route::get('subcategories',[SubcategoryController::class,'index']);
 
 // Route::post('auth/google',[GoogleAuthController::class,'redirect']);
+
+//Order
+Route::post('orders',[OrderController::class,'addNewOrder']);
+
+//Test some function
+Route::get('product/test',[ProductController::class,'test']);

@@ -20,4 +20,13 @@ class Product extends Model
         'description',
         'status'
     ];
+
+    public function attributeValues()
+    {
+        return $this->hasMany(AttributeValue::class,'product_id');
+    }
+    public function productAttributes()
+    {
+        return $this->belongsToMany(ProductAttribute::class,'attribute_values','product_id','product_attribute_id');
+    }
 }

@@ -14,16 +14,16 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::create('attribute_values', function (Blueprint $table) {
-        //     $table->id(); 
-        //     $table->bigInteger('product_attribute_id')->unsigned()->nullable();
-        //     $table->string('value');
-        //     $table->integer('product_id')->nullable();
-        //     $table->timestamps();
-        //     $table->softDeletes();
-        //     $table->foreign('product_attribute_id')->references('id')->on('product_attribute')->onDelete('cascade');
-        //     $table->foreign('product_id')->references('product_id')->on('product')->onDelete('cascade');
-        // });
+        Schema::create('attribute_values', function (Blueprint $table) {
+            $table->id(); 
+            $table->bigInteger('product_attribute_id')->unsigned()->nullable();
+            $table->string('value');
+            $table->integer('product_id')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('product_attribute_id')->references('id')->on('product_attribute')->onDelete('cascade');
+            $table->foreign('product_id')->references('product_id')->on('product')->onDelete('cascade');
+        });
     }
 
     /**
