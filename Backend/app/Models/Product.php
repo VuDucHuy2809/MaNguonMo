@@ -12,21 +12,28 @@ class Product extends Model
     use HasFactory,SoftDeletes;
     protected $table = 'product';
     protected $primaryKey='product_id';
-    protected $fillabel = [
-        'name',
-        'quantity',
-        'price',
-        'image',
-        'description',
-        'status'
-    ];
-
-    public function attributeValues()
+    // protected $fillabel = [
+    //     'name',
+    //     'quantity',
+    //     'price',
+    //     'image',
+    //     'description',
+    //     'status'
+    // ];
+    public function brand()
     {
-        return $this->hasMany(AttributeValue::class,'product_id');
+        return $this->belongsTo(Brand::class,'brand_id','brand_id');
     }
-    public function productAttributes()
+    public function discount()
     {
-        return $this->belongsToMany(ProductAttribute::class,'attribute_values','product_id','product_attribute_id');
+        return $this->belongsTo(Discount::class,'discount_id','discount_id');
+    }
+    public function size()
+    {
+        return $this->belongsTo(Size::class,'size_id','size_id');
+    }
+    public function subCate()
+    {
+        return $this->belongsTo(SubCategory::class,'subcate_id','subcate_id');
     }
 }

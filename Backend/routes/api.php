@@ -35,7 +35,6 @@ Route::post('login', [AuthController::class, 'login']);
 // Route::put('products/{id}/update',[ProductController::class,'update']);
 // Route::delete('products/{id}',[ProductController::class,'destroy']);
 Route::apiResource('products',ProductController::class);
-Route::apiResource('product_attributes',ProductAttributeController::class);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('logout',[AuthController::class,'logout']);

@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\AttributeValue;
 use App\Models\Product;
-use App\Models\ProductAttribute;
-use ArrayObject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -46,32 +43,37 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'image' =>'required',
             'description'=> 'required',
-            'status'=>'required'
+            'status'=>'required',
+            'brand_id'=>'required',
+            'size_id'=>'required'
         ]);
         $product= new Product;
+        $product->subcate_id = $request->subcate_id;
         $product->name = $request->name;
         $product->quantity = $request->quantity;
         $product->price = $request->price;
         $product->description = $request->description;
         $product->status  = $request->status;
-
-        // $imageName = Carbon::now()->timestamp.'.'.$request->image->extension();
-        // $request->image->storeAs('products',$imageName);
-        // $product->image = $imageName;
+        $product->brand_id = $request->brand_id;
+        $product->size_id = $request->size_id;
+        if($request->discount_id)
+            {
+                $product->discount_id = $request->discount_id;
+            }
+            else
+            {
+                $product->discount_id = 0;
+            }
+        if($request->sale_price)
+            {
+                $product->sale_price=$request->sale_price;
+            }
+        else
+            {
+                $product->sale_price=0;
+            }
         $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
 
-        foreach($request->attribute_values as $key=>$attribute_value)
-        {
-            $avalues = explode(",",$attribute_value);
-            foreach($avalues as $avalue)
-            {
-                $attr_value = new AttributeValue();
-                $attr_value->product_attribute_id = $key;
-                $attr_value->value = $avalue;
-                $attr_value->product_id = $product->id;
-                $attr_value->save();
-            }
-        }
         $product->image=$response;
         $product->save();
         return response()->json(['message'=>'Product Added Successfully'],200);
@@ -112,20 +114,42 @@ class ProductController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'quantity'=>'required',
-            'price' => 'required',
+            'quantity'=>'required|numeric',
+            'price' => 'required|numeric',
+            'image' =>'required',
             'description'=> 'required',
-            'status'=>'required'
+            'status'=>'required',
+            'brand_id'=>'required',
+            'size_id'=>'required'
         ]); 
         $product= Product::find($id);
         //return response()->json(['message'=>'Product Update  Successfully'],200);
         if($product)
         {
+            $product->subcate_id = $request->subcate_id;
             $product->name = $request->name;
             $product->quantity = $request->quantity;
             $product->price = $request->price;
             $product->description = $request->description;
             $product->status  = $request->status;
+            $product->brand_id = $request->brand_id;
+            $product->size_id = $request->size_id;
+            if($request->discount_id)
+            {
+                $product->discount_id = $request->discount_id;
+            }
+            else
+            {
+                $product->discount_id = 0;
+            }
+            if($request->sale_price)
+            {
+                $product->sale_price=$request->sale_price;
+            }
+            else
+            {
+                $product->sale_price=0;
+            }
             $product->update();
             return response()->json(['message'=>'Product Update Successfully'],200);
         }
@@ -153,17 +177,5 @@ class ProductController extends Controller
         {
             return response()->json(['message','No Product Found']);
         }
-    }
-    public function test()
-    {
-        $color=[3,5];
-        $p=new ArrayObject();
-        // $products = Product::whereHas('attributeValues',function($query){
-        //     $query->whereIn('value', [3,5]);
-        // })->get();        
-        // return $products;
-        $proAttribute = ProductAttribute::has('products')->get();    
-        return $proAttribute;
-        
     }
 }
