@@ -7,19 +7,20 @@ use App\Models\Account;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
     public function addNewOrder(Request $request)
     {
         $request->validate([
-            'user_id' => 'required',
+            // 'user_id' => 'required',
             'total' => 'required',
             'address'=>'required'
         ]);
         
         $order = new Order();
-        $order->user_id = $request->user_id;
+        $order->user_id = Auth::id();
         $order->status = 1;
         $order->total = $request->total;
         $order->address = $request->address;
@@ -38,5 +39,29 @@ class OrderController extends Controller
             }
         }
         
+    }
+    public function showOrder($id)
+    {
+        $order=Order::find($id);
+        if($order)
+        {
+            return response()->json(['order'=>$order],200);
+        }
+        else
+        {
+            return response()->json(['message'=>'No Order Found'],404);
+        }
+    }
+    public function index()
+    {
+        $orders=Order::all();
+        if($orders)
+        {
+            return response()->json(['orders'=>$orders],200);
+        }
+        else
+        {
+            return response()->json(['message'=>'No Order Found'],404);
+        }
     }
 }

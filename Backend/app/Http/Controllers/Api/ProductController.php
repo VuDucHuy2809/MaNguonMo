@@ -21,7 +21,7 @@ class ProductController extends Controller
         $products=Product::paginate(6);
         if($products)
         {
-            return response()->json(['products'=>$products],200);
+            return response()->json($products,200);
         }
         else
         {

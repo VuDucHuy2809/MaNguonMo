@@ -38,9 +38,12 @@ Route::apiResource('products',ProductController::class);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('logout',[AuthController::class,'logout']);
+    Route::get('orders/{id}',[OrderController::class,'showOrder']);
+    //Order
+    Route::post('orders',[OrderController::class,'addNewOrder']);
 });
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return "Login success!!!" ;
+Route::middleware('auth:sanctum')->get('/user', function () {
+
 });
 Route::post('reset-password', [ResetPasswordController::class,'sendMail']);
 Route::put('reset-password/{token}', [ResetPasswordController::class,'reset']);
@@ -52,8 +55,7 @@ Route::get('subcategories',[SubcategoryController::class,'index']);
 
 // Route::post('auth/google',[GoogleAuthController::class,'redirect']);
 
-//Order
-Route::post('orders',[OrderController::class,'addNewOrder']);
+
 
 //Test some function
 Route::get('product/test',[ProductController::class,'test']);
