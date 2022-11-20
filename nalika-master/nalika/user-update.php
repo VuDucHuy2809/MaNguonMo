@@ -14,10 +14,10 @@
     $response  = curl_exec($ch);
     $resJSON=json_decode($response);
     $mess=$resJSON->message;
-    echo $response;
+    //echo $response;
     curl_close($ch);
-    // echo "<script>
-    //     alert('".$mess."');
-    //     window.location.href='product-list.php';
-    //     </script>";
+    echo "<script>
+        alert('".$mess."');
+        window.location.href='user-list.php';
+        </script>";
 ?>

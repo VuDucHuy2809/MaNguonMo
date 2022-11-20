@@ -12,7 +12,7 @@ class AccountController extends Controller
     public function index()
     {
         // $products = Product::all();
-        $accounts=Account::getAllCus();
+        $accounts=Account::getAll();
         if($accounts)
         {
             return response()->json(['accounts'=>$accounts],200);
@@ -24,7 +24,7 @@ class AccountController extends Controller
     }
     public function show($id)
     {
-        $accounts=Account::getCus($id);
+        $accounts=Account::find($id);
         if($accounts)
         {
             return response()->json(['account'=>$accounts],200);
@@ -41,14 +41,14 @@ class AccountController extends Controller
             'address'=>'required',
             'phone' => 'required',
         ]); 
-        $customer= Customer::find($id);
+        $account= Account::find($id);
         //return response()->json(['message'=>'Product Update  Successfully'],200);
-        if($customer)
+        if($account)
         {
-            $customer->name = $request->name;
-            $customer->address = $request->address;
-            $customer->phone = $request->phone;
-            $customer->update();
+            $account->name = $request->name;
+            $account->address = $request->address;
+            $account->phone = $request->phone;
+            $account->update();
             return response()->json(['message'=>'User Update Successfully'],200);
         }
         else

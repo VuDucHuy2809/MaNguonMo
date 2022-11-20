@@ -69,11 +69,11 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <?php
-            $url='http://localhost:8000/api/accounts/'.$_GET['id'];
+            //$url='http://localhost:8000/api/accounts/'.$_GET['id'];
             $json = file_get_contents($url);  
             $obj = json_decode($json);
             $account=$obj->account;
-        var_dump($account);
+            var_dump($account);
         ?>
   <div class="left-sidebar-pro">
         <nav id="sidebar" class="">

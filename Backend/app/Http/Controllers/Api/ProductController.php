@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public $temp;
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +20,7 @@ class ProductController extends Controller
         $products=Product::paginate(6);
         if($products)
         {
-            return response()->json($products,200);
+            return response()->json(['products'=>$products],200);
         }
         else
         {
@@ -39,55 +38,28 @@ class ProductController extends Controller
     {
         $request->validate([
             'name'=>'required',
+            'subcate_id'=>'required',
             'quantity'=>'required|numeric',
             'price' => 'required|numeric',
             'image' =>'required',
             'description'=> 'required',
-<<<<<<< HEAD
             'status'=>'required'    
-=======
-            'status'=>'required',
-            'brand_id'=>'required',
-            'size_id'=>'required'
->>>>>>> 5438822b0e757bf23e88a0c7214aa7ac8dff8b9f
         ]);
         $product= new Product;
-        $product->subcate_id = $request->subcate_id;
         $product->name = $request->name;
+        $product->subcate_id=$request->subcate_id;
         $product->quantity = $request->quantity;
         $product->price = $request->price;
         $product->description = $request->description;
         $product->status  = $request->status;
-<<<<<<< HEAD
         $product->sale_price=$request->sale_price;
 
         // $imageName = Carbon::now()->timestamp.'.'.$request->image->extension();
         // $request->image->storeAs('products',$imageName);
         // $product->image = $imageName;
         //$product->image=Controller::uploadImage($request->file('image'));
-=======
-        $product->brand_id = $request->brand_id;
-        $product->size_id = $request->size_id;
-        if($request->discount_id)
-            {
-                $product->discount_id = $request->discount_id;
-            }
-            else
-            {
-                $product->discount_id = 0;
-            }
-        if($request->sale_price)
-            {
-                $product->sale_price=$request->sale_price;
-            }
-        else
-            {
-                $product->sale_price=0;
-            }
         $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
-
         $product->image=$response;
->>>>>>> 5438822b0e757bf23e88a0c7214aa7ac8dff8b9f
         $product->save();
         return response()->json(['message'=>'Product Added Successfully','test'=>$request->image],200);
     }
@@ -127,42 +99,20 @@ class ProductController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'quantity'=>'required|numeric',
-            'price' => 'required|numeric',
-            'image' =>'required',
+            'quantity'=>'required',
+            'price' => 'required',
             'description'=> 'required',
-            'status'=>'required',
-            'brand_id'=>'required',
-            'size_id'=>'required'
+            'status'=>'required'
         ]); 
         $product= Product::find($id);
         //return response()->json(['message'=>'Product Update  Successfully'],200);
         if($product)
         {
-            $product->subcate_id = $request->subcate_id;
             $product->name = $request->name;
             $product->quantity = $request->quantity;
             $product->price = $request->price;
             $product->description = $request->description;
             $product->status  = $request->status;
-            $product->brand_id = $request->brand_id;
-            $product->size_id = $request->size_id;
-            if($request->discount_id)
-            {
-                $product->discount_id = $request->discount_id;
-            }
-            else
-            {
-                $product->discount_id = 0;
-            }
-            if($request->sale_price)
-            {
-                $product->sale_price=$request->sale_price;
-            }
-            else
-            {
-                $product->sale_price=0;
-            }
             $product->update();
             return response()->json(['message'=>'Product Update Successfully'],200);
         }
@@ -191,4 +141,8 @@ class ProductController extends Controller
             return response()->json(['message','No Product Found']);
         }
     }
+    // public function paginateProduct($page)
+    // {
+        
+    // }
 }
