@@ -42,7 +42,7 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'image' =>'required',
             'description'=> 'required',
-            'status'=>'required'
+            'status'=>'required'    
         ]);
         $product= new Product;
         $product->name = $request->name;
@@ -50,12 +50,14 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
         $product->status  = $request->status;
+        $product->sale_price=$request->sale_price;
 
         // $imageName = Carbon::now()->timestamp.'.'.$request->image->extension();
         // $request->image->storeAs('products',$imageName);
         // $product->image = $imageName;
+        //$product->image=Controller::uploadImage($request->file('image'));
         $product->save();
-        return response()->json(['message'=>'Product Added Successfully'],200);
+        return response()->json(['message'=>'Product Added Successfully','test'=>$request->image],200);
     }
 
     /**

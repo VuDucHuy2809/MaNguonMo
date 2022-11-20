@@ -4,63 +4,63 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Mail Compose </title>
+    <title>User Edit </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
-        ============================================ -->
+		============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
     <!-- Google Fonts
-        ============================================ -->
+		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
     <!-- Bootstrap CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Bootstrap CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
+	<!-- nalika Icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/nalika-icon.css">
     <!-- owl.carousel CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/owl.theme.css">
     <link rel="stylesheet" href="css/owl.transitions.css">
     <!-- animate CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="css/animate.css">
     <!-- normalize CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="css/normalize.css">
     <!-- meanmenu icon CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="css/meanmenu.min.css">
     <!-- main CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="css/main.css">
     <!-- morrisjs CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="css/morrisjs/morris.css">
     <!-- mCustomScrollbar CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="css/scrollbar/jquery.mCustomScrollbar.min.css">
     <!-- metisMenu CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="css/metisMenu/metisMenu.min.css">
     <link rel="stylesheet" href="css/metisMenu/metisMenu-vertical.css">
     <!-- calendar CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="css/calendar/fullcalendar.min.css">
     <link rel="stylesheet" href="css/calendar/fullcalendar.print.min.css">
-    <!-- summernote CSS
-        ============================================ -->
-    <link rel="stylesheet" href="css/summernote/summernote.css">
     <!-- style CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="style.css">
     <!-- responsive CSS
-        ============================================ -->
+		============================================ -->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- modernizr JS
-        ============================================ -->
+		============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -68,8 +68,14 @@
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-    <div class="left-sidebar-pro">
+        <?php
+            $url='http://localhost:8000/api/accounts/'.$_GET['id'];
+            $json = file_get_contents($url);  
+            $obj = json_decode($json);
+            $account=$obj->account;
+            //var_dump($account);
+        ?>
+  <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
                 <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
@@ -82,9 +88,9 @@
                 </div>
                 <div class="profile-social-dtl">
                     <ul class="dtl-social">
-                        <li><a href="#"><i class="icon nalika-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon nalika-twitter"></i></a></li>
-                        <li><a href="#"><i class="icon nalika-linkedin"></i></a></li>
+                        <li><a href="https://www.facebook.com/huycutehihi.2809"><i class="icon nalika-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/v37771030"><i class="icon nalika-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/__hheehhe__/"><i class="icon nalika-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -101,30 +107,30 @@
                                 <li><a title="Product List" href="product-list.html"><span class="mini-sub-pro">Product List</span></a></li>
                                 <li><a title="Product Edit" href="product-edit.html"><span class="mini-sub-pro">Product Edit</span></a></li>
                                 <li><a title="Product Detail" href="product-detail.html"><span class="mini-sub-pro">Product Detail</span></a></li>
+                                <li><a title="Add Product" href="add-product.html"><span class="mini-sub-pro">Add product</span></a></li>
                                 <li><a title="Product Cart" href="product-cart.html"><span class="mini-sub-pro">Product Cart</span></a></li>
                                 <li><a title="Product Payment" href="product-payment.html"><span class="mini-sub-pro">Product Payment</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-mail icon-wrap"></i> <span class="mini-click-non">Mailbox</span></a>
+                            <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-mail icon-wrap"></i> <span class="mini-click-non">User</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Inbox" href="mailbox.html"><span class="mini-sub-pro">Inbox</span></a></li>
-                                <li><a title="View Mail" href="mailbox-view.html"><span class="mini-sub-pro">View Mail</span></a></li>
-                                <li><a title="Compose Mail" href="mailbox-compose.html"><span class="mini-sub-pro">Compose Mail</span></a></li>
+                              <li><a title="Product List" href="add-user.html"><span class="mini-sub-pro">Add-User</span></a></li>
+                                 <li><a title="Product List" href="user-edit.html"><span class="mini-sub-pro">User-Edit</span></a></li>
+                               
                             </ul>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-diamond icon-wrap"></i> <span class="mini-click-non">Interface</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Google Map" href="google-map.html"><span class="mini-sub-pro">Google Map</span></a></li>
                                 <li><a title="Preloader" href="preloader.html"><span class="mini-sub-pro">Preloader</span></a></li>
                             </ul>
-                        </li>   
+                        </li>   -->
                         <li id="removable">
                             <a class="has-arrow" href="#" aria-expanded="false"><i class="icon nalika-new-file icon-wrap"></i> <span class="mini-click-non">Pages</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Login" href="login.html"><span class="mini-sub-pro">Login</span></a></li>
-                                <li><a title="Register" href="register.html"><span class="mini-sub-pro">Register</span></a></li>
                                 <li><a title="Lock" href="lock.html"><span class="mini-sub-pro">Lock</span></a></li>
                                 <li><a title="Password Recovery" href="password-recovery.html"><span class="mini-sub-pro">Password Recovery</span></a></li>
                             </ul>
@@ -155,29 +161,25 @@
                                     <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
                                         <div class="menu-switcher-pro">
                                             <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
-                                                    <i class="fa fa-bars"></i>
+                                                    <i class="icon nalika-menu-task"></i>
                                                 </button>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
-                                        <div class="header-top-menu tabl-d-n">
-                                            <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="#" class="nav-link">Home</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">About</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Services</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Support</a>
-                                                </li>
-                                            </ul>
+                                        <div class="header-top-menu tabl-d-n hd-search-rp">
+                                            <div class="breadcome-heading">
+                                                <form role="search" class="">
+                                                    <input type="text" placeholder="Search..." class="form-control">
+                                                    <a href=""><i class="fa fa-search"></i></a>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">
                                                 <li class="nav-item dropdown">
-                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-envelope-o adminpro-chat-pro" aria-hidden="true"></i><span class="indicator-ms"></span></a>
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="icon nalika-mail" aria-hidden="true"></i><span class="indicator-ms"></span></a>
                                                     <div role="menu" class="author-message-top dropdown-menu animated zoomIn">
                                                         <div class="message-single-top">
                                                             <h1>Message</h1>
@@ -190,7 +192,7 @@
                                                                     </div>
                                                                     <div class="message-content">
                                                                         <span class="message-date">16 Sept</span>
-                                                                        <h2>HuyCute</h2>
+                                                                        <h2>Advanda Cro</h2>
                                                                         <p>Please done this project as soon possible.</p>
                                                                     </div>
                                                                 </a>
@@ -237,7 +239,7 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-bell-o" aria-hidden="true"></i><span class="indicator-nt"></span></a>
+                                                <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="icon nalika-alarm" aria-hidden="true"></i><span class="indicator-nt"></span></a>
                                                     <div role="menu" class="notification-author dropdown-menu animated zoomIn">
                                                         <div class="notification-single-top">
                                                             <h1>Notifications</h1>
@@ -246,7 +248,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="notification-icon">
-                                                                        <i class="fa fa-check adminpro-checked-pro admin-check-pro" aria-hidden="true"></i>
+                                                                        <i class="icon nalika-tick" aria-hidden="true"></i>
                                                                     </div>
                                                                     <div class="notification-content">
                                                                         <span class="notification-date">16 Sept</span>
@@ -258,7 +260,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="notification-icon">
-                                                                        <i class="fa fa-cloud adminpro-cloud-computing-down" aria-hidden="true"></i>
+                                                                        <i class="icon nalika-cloud" aria-hidden="true"></i>
                                                                     </div>
                                                                     <div class="notification-content">
                                                                         <span class="notification-date">16 Sept</span>
@@ -270,7 +272,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="notification-icon">
-                                                                        <i class="fa fa-eraser adminpro-shield" aria-hidden="true"></i>
+                                                                        <i class="icon nalika-folder" aria-hidden="true"></i>
                                                                     </div>
                                                                     <div class="notification-content">
                                                                         <span class="notification-date">16 Sept</span>
@@ -282,7 +284,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="notification-icon">
-                                                                        <i class="fa fa-line-chart adminpro-analytics-arrow" aria-hidden="true"></i>
+                                                                        <i class="icon nalika-bar-chart" aria-hidden="true"></i>
                                                                     </div>
                                                                     <div class="notification-content">
                                                                         <span class="notification-date">16 Sept</span>
@@ -297,7 +299,7 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                 <li class="nav-item">
+                                                <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                             <i class="icon nalika-user"></i>
                                                             <span class="admin-name">HuyCute</span>
@@ -312,7 +314,7 @@
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-tasks"></i></a>
+                                                <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="icon nalika-menu-task"></i></a>
 
                                                     <div role="menu" class="admintab-wrap menu-setting-wrap menu-setting-wrap-bg dropdown-menu animated zoomIn">
                                                         <ul class="nav nav-tabs custon-set-tab">
@@ -328,7 +330,7 @@
                                                             <div id="Notes" class="tab-pane fade in active">
                                                                 <div class="notes-area-wrap">
                                                                     <div class="note-heading-indicate">
-                                                                        <h2><i class="fa fa-comments-o"></i> Latest News</h2>
+                                                                        <h2><i class="icon nalika-chat"></i> Latest News</h2>
                                                                         <p>You have 10 New News.</p>
                                                                     </div>
                                                                     <div class="notes-list-area notes-menu-scrollbar">
@@ -470,7 +472,7 @@
                                                             <div id="Projects" class="tab-pane fade">
                                                                 <div class="projects-settings-wrap">
                                                                     <div class="note-heading-indicate">
-                                                                        <h2><i class="fa fa-cube"></i> Recent Activity</h2>
+                                                                        <h2><i class="icon nalika-happiness"></i> Recent Activity</h2>
                                                                         <p> You have 20 Recent Activity.</p>
                                                                     </div>
                                                                     <div class="project-st-list-area project-st-menu-scrollbar">
@@ -570,7 +572,7 @@
                                                             <div id="Settings" class="tab-pane fade">
                                                                 <div class="setting-panel-area">
                                                                     <div class="note-heading-indicate">
-                                                                        <h2><i class="fa fa-gears"></i> Settings Panel</h2>
+                                                                        <h2><i class="icon nalika-gear"></i> Settings Panel</h2>
                                                                         <p> You have 20 Settings. 5 not completed.</p>
                                                                     </div>
                                                                     <ul class="setting-panel-list">
@@ -710,7 +712,7 @@
                             <div class="mobile-menu">
                                 <nav id="dropdown">
                                     <ul class="mobile-menu-nav">
-                                        <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul class="collapse dropdown-header-top">
                                                 <li><a href="index.html">Dashboard v.1</a></li>
                                                 <li><a href="index-1.html">Dashboard v.2</a></li>
@@ -724,7 +726,7 @@
                                                 <li><a href="widgets.html">Widgets</a></li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#demo" href="#">Mailbox <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#demo" href="#">Mailbox <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="demo" class="collapse dropdown-header-top">
                                                 <li><a href="mailbox.html">Inbox</a>
                                                 </li>
@@ -734,7 +736,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#others" href="#">Miscellaneous <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#others" href="#">Miscellaneous <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="others" class="collapse dropdown-header-top">
                                                 <li><a href="file-manager.html">File Manager</a></li>
                                                 <li><a href="contacts.html">Contacts Client</a></li>
@@ -746,7 +748,7 @@
                                                 <li><a href="500.html">500 Page</a></li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">Interface <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">Interface <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
                                                 <li><a href="google-map.html">Google Map</a>
                                                 </li>
@@ -766,7 +768,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#Chartsmob" href="#">Charts <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#Chartsmob" href="#">Charts <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="Chartsmob" class="collapse dropdown-header-top">
                                                 <li><a href="bar-charts.html">Bar Charts</a>
                                                 </li>
@@ -784,7 +786,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#Tablesmob" href="#">Tables <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#Tablesmob" href="#">Tables <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="Tablesmob" class="collapse dropdown-header-top">
                                                 <li><a href="static-table.html">Static Table</a>
                                                 </li>
@@ -792,7 +794,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#formsmob" href="#">Forms <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#formsmob" href="#">Forms <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="formsmob" class="collapse dropdown-header-top">
                                                 <li><a href="basic-form-element.html">Basic Form Elements</a>
                                                 </li>
@@ -808,7 +810,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#Appviewsmob" href="#">App views <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#Appviewsmob" href="#">App views <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="Appviewsmob" class="collapse dropdown-header-top">
                                                 <li><a href="basic-form-element.html">Basic Form Elements</a>
                                                 </li>
@@ -824,7 +826,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Pages <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Pages <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="Pagemob" class="collapse dropdown-header-top">
                                                 <li><a href="login.html">Login</a>
                                                 </li>
@@ -848,23 +850,23 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="breadcome-list single-page-breadcome">
+                            <div class="breadcome-list">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="breadcome-heading">
-                                            <form role="search" class="">
-                                                <input type="text" placeholder="Search..." class="form-control">
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </form>
-                                        </div>
+                                        <div class="breadcomb-wp">
+											<div class="breadcomb-icon">
+												<i class="icon nalika-home"></i>
+											</div>
+											<div class="breadcomb-ctn">
+												<h2>User Edit</h2>
+												<p>Welcome to BestStore <span class="bread-ntd"></span></p>
+											</div>
+										</div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <ul class="breadcome-menu">
-                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
-                                            </li>
-                                            <li><span class="bread-blod">Compose Mail</span>
-                                            </li>
-                                        </ul>
+                                        <div class="breadcomb-report">
+											<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="icon nalika-download"></i></button>
+										</div>
                                     </div>
                                 </div>
                             </div>
@@ -873,118 +875,280 @@
                 </div>
             </div>
         </div>
-        <div class="mailbox-compose-area mg-tb-15">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-3 col-md-3 col-sm-3 col-xs-12">
-                        <div class="hpanel responsive-mg-b-30">
-                            <div class="panel-body">
-                                <a href="mailbox_compose.html" class="btn btn-success compose-btn btn-block m-b-md">Compose</a>
-                                <ul class="mailbox-list">
-                                    <li>
-                                        <a href="#">
-                                                <span class="pull-right">12</span>
-                                                <i class="fa fa-envelope"></i> Inbox
-                                            </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-paper-plane"></i> Sent</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-pencil"></i> Draft</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-trash"></i> Trash</a>
-                                    </li>
+        <!-- Single pro tab start-->
+        <div class="single-product-tab-area mg-b-30">
+            <!-- Single pro tab review Start-->
+            <div class="single-pro-review-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="review-tab-pro-inner">
+                                <ul id="myTab3" class="tab-review-design">
+                                    <li class="active"><a href="#description"><i class="icon nalika-edit" aria-hidden="true"></i>Edit User</a></li>
                                 </ul>
-                                <hr>
-                                <ul class="mailbox-list">
-                                    <li>
-                                        <a href="#"><i class="fa fa-plane text-danger"></i> Travel</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-bar-chart text-warning"></i> Finance</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-users text-info"></i> Social</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-tag text-success"></i> Promos</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-flag text-primary"></i> Updates</a>
-                                    </li>
-                                </ul>
-                                <hr>
-                                <ul class="mailbox-list">
-                                    <li>
-                                        <a href="#"><i class="fa fa-gears"></i> Settings</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-info-circle"></i> Support</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
-                        <div class="hpanel email-compose mg-b-15">
-                            <div class="panel-heading hbuilt">
-                                <div class="p-xs h4">
-                                    New message
-                                </div>
-                            </div>
-                            <div class="panel-heading hbuilt">
-                                <div class="p-xs">
-                                    <form method="get" class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-sm-1 control-label text-left">To:</label>
-                                            <div class="col-sm-11">
-                                                <input type="text" class="form-control input-sm" placeholder="example@email.com">
+                                <div id="myTabContent" class="tab-content custom-product-edit">
+                                    <div class="product-tab-list tab-pane fade active in" id="description">
+                                        <form method="get" action='user-update.php'>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <?php
+                                                foreach($account as $value)
+                                                {
+                                                echo "<div class='review-content-section'>
+                                                    <div class='input-group mg-b-pro-edt'>
+                                                        <span class='input-group-addon'>id</span>
+                                                        <input style='background-color:#152036' type='text' value='".$value->user_id."'class='form-control' readonly>
+                                                    </div>
+                                                    <div class='input-group mg-b-pro-edt'>
+                                                        <span class='input-group-addon'><i class='icon nalika-user' aria-hidden='true'></i></span>
+                                                        <input type='text' value='".$value->name."'class='form-control' placeholder='UserName'>
+                                                    </div>
+                                                    <div class='input-group mg-b-pro-edt'>
+                                                        <span class='input-group-addon'><i class='fa fa-envelope' aria-hidden='true'></i></span>
+                                                        <input type='text' value='".$value->email."'class='form-control' placeholder='Email'>
+                                                    </div>
+                                                    <div class='input-group mg-b-pro-edt'>
+                                                        <span class='input-group-addon'><i class='icon nalika-new-file' aria-hidden='true'></i></span>
+                                                        <input type='text' value='".$value->address."' class='form-control' placeholder='Locate'>
+                                                    </div>
+                                                    <div class='input-group mg-b-pro-edt'>
+                                                        <span class='input-group-addon'><i class='icon nalika-favorites' aria-hidden='true'></i></span>
+                                                        <input type='text' value='".$value->phone."'class='form-control' placeholder='Phone Number'>
+                                                    </div>
+                                                </div>";
+                                                }
+                                                ?>
+                                            </div>
+                                        </form>
+                                        </div> 
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="text-center custom-pro-edt-ds">
+                                                    <button type="button" class="btn btn-ctl-bt waves-effect waves-light m-r-10">Save
+														</button>
+                                                    <button type="button" class="btn btn-ctl-bt waves-effect waves-light">Discard
+														</button>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-1 control-label text-left">Cc:</label>
-                                            <div class="col-sm-11">
-                                                <input type="text" class="form-control input-sm">
+                                    </div>
+                                    <div class="product-tab-list tab-pane fade" id="reviews">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="review-content-section">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <div class="pro-edt-img">
+                                                                <img src="img/new-product/5-small.jpg" alt="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="product-edt-pix-wrap">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon">TT</span>
+                                                                            <input type="text" class="form-control" placeholder="Label Name">
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-radio">
+                                                                                    <form>
+                                                                                        <div class="radio radiofill">
+                                                                                            <label>
+																									<input type="radio" name="radio"><i class="helper"></i>Largest Image
+																								</label>
+                                                                                        </div>
+                                                                                        <div class="radio radiofill">
+                                                                                            <label>
+																									<input type="radio" name="radio"><i class="helper"></i>Medium Image
+																								</label>
+                                                                                        </div>
+                                                                                        <div class="radio radiofill">
+                                                                                            <label>
+																									<input type="radio" name="radio"><i class="helper"></i>Small Image
+																								</label>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="product-edt-remove">
+                                                                                    <button type="button" class="btn btn-ctl-bt waves-effect waves-light">Remove
+																							<i class="fa fa-times" aria-hidden="true"></i>
+																						</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <div class="pro-edt-img">
+                                                                <img src="img/new-product/6-small.jpg" alt="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="product-edt-pix-wrap">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon">TT</span>
+                                                                            <input type="text" class="form-control" placeholder="Label Name">
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-radio">
+                                                                                    <form>
+                                                                                        <div class="radio radiofill">
+                                                                                            <label>
+																									<input type="radio" name="radio"><i class="helper"></i>Largest Image
+																								</label>
+                                                                                        </div>
+                                                                                        <div class="radio radiofill">
+                                                                                            <label>
+																									<input type="radio" name="radio"><i class="helper"></i>Medium Image
+																								</label>
+                                                                                        </div>
+                                                                                        <div class="radio radiofill">
+                                                                                            <label>
+																									<input type="radio" name="radio"><i class="helper"></i>Small Image
+																								</label>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="product-edt-remove">
+                                                                                    <button type="button" class="btn btn-ctl-bt waves-effect waves-light">Remove
+																							<i class="fa fa-times" aria-hidden="true"></i>
+																						</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <div class="pro-edt-img mg-b-0">
+                                                                <img src="img/new-product/7-small.jpg" alt="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="product-edt-pix-wrap">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon">TT</span>
+                                                                            <input type="text" class="form-control" placeholder="Label Name">
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6">
+                                                                                <div class="form-radio">
+                                                                                    <form>
+                                                                                        <div class="radio radiofill">
+                                                                                            <label>
+																									<input type="radio" name="radio"><i class="helper"></i>Largest Image
+																								</label>
+                                                                                        </div>
+                                                                                        <div class="radio radiofill">
+                                                                                            <label>
+																									<input type="radio" name="radio"><i class="helper"></i>Medium Image
+																								</label>
+                                                                                        </div>
+                                                                                        <div class="radio radiofill">
+                                                                                            <label>
+																									<input type="radio" name="radio"><i class="helper"></i>Small Image
+																								</label>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="product-edt-remove">
+                                                                                    <button type="button" class="btn btn-ctl-bt waves-effect waves-light">Remove
+																							<i class="fa fa-times" aria-hidden="true"></i>
+																						</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-1 control-label text-left">Subject:</label>
-                                            <div class="col-sm-11">
-                                                <input type="text" class="form-control input-sm" placeholder="Enter Email subject">
+                                    </div>
+                                    <div class="product-tab-list tab-pane fade" id="INFORMATION">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="review-content-section">
+                                                    <div class="card-block">
+                                                        <div class="text-muted f-w-400">
+                                                            <p>No reviews yet.</p>
+                                                        </div>
+                                                        <div class="m-t-10">
+                                                            <div class="txt-primary f-18 f-w-600">
+                                                                <p>Your Rating</p>
+                                                            </div>
+                                                            <div class="stars stars-example-css detail-stars">
+                                                                <div class="review-rating">
+                                                                    <fieldset class="rating">
+                                                                        <input type="radio" id="star5" name="rating" value="5">
+                                                                        <label class="full" for="star5"></label>
+                                                                        <input type="radio" id="star4half" name="rating" value="4 and a half">
+                                                                        <label class="half" for="star4half"></label>
+                                                                        <input type="radio" id="star4" name="rating" value="4">
+                                                                        <label class="full" for="star4"></label>
+                                                                        <input type="radio" id="star3half" name="rating" value="3 and a half">
+                                                                        <label class="half" for="star3half"></label>
+                                                                        <input type="radio" id="star3" name="rating" value="3">
+                                                                        <label class="full" for="star3"></label>
+                                                                        <input type="radio" id="star2half" name="rating" value="2 and a half">
+                                                                        <label class="half" for="star2half"></label>
+                                                                        <input type="radio" id="star2" name="rating" value="2">
+                                                                        <label class="full" for="star2"></label>
+                                                                        <input type="radio" id="star1half" name="rating" value="1 and a half">
+                                                                        <label class="half" for="star1half"></label>
+                                                                        <input type="radio" id="star1" name="rating" value="1">
+                                                                        <label class="full" for="star1"></label>
+                                                                        <input type="radio" id="starhalf" name="rating" value="half">
+                                                                        <label class="half" for="starhalf"></label>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <div class="clear"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-group mg-b-15 mg-t-15">
+                                                            <span class="input-group-addon"><i class="icon nalika-user" aria-hidden="true"></i></span>
+                                                            <input type="text" class="form-control" placeholder="User Name">
+                                                        </div>
+                                                        <div class="input-group mg-b-15">
+                                                            <span class="input-group-addon"><i class="icon nalika-user" aria-hidden="true"></i></span>
+                                                            <input type="text" class="form-control" placeholder="Last Name">
+                                                        </div>
+                                                        <div class="input-group mg-b-15">
+                                                            <span class="input-group-addon"><i class="icon nalika-mail" aria-hidden="true"></i></span>
+                                                            <input type="text" class="form-control" placeholder="Email">
+                                                        </div>
+                                                        <div class="form-group review-pro-edt mg-b-0-pt">
+                                                            <button type="submit" class="btn btn-ctl-bt waves-effect waves-light">Submit
+																</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="panel-body no-padding">
-                                <div class="summernote6">
-                                    <h5>Hello Jonathan! </h5>
-                                    <p>Dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the dustrys</strong> standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                                        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                                        containing Lorem Ipsum passages, and more
-                                        <br/>
-                                        <br/>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
-                                        a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. recently with.</p>
-                                    <p>Mark Smith
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="panel-footer">
-                                <div class="pull-right">
-                                    <div class="btn-group">
-                                        <button class="btn btn-default"><i class="fa fa-edit"></i> Save</button>
-                                        <button class="btn btn-default"><i class="fa fa-trash"></i> Discard</button>
                                     </div>
                                 </div>
-                                <button class="btn btn-primary ft-compse">Send email</button>
-                                <div class="btn-group">
-                                    <button class="btn btn-default"><i class="fa fa-paperclip"></i> </button>
-                                    <button class="btn btn-default"><i class="fa fa-image"></i> </button>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -996,7 +1160,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="footer-copy-right">
-                             <p>Design Đức Huy đẹp trai nhất hệ mặt trời <a href="https://www.facebook.com/huycutehihi.2809">Click Here </a></p>
+                              <p>Design Đức Huy đẹp trai nhất hệ mặt trời <a href="https://www.facebook.com/huycutehihi.2809">Click Here </a></p>
                         </div>
                     </div>
                 </div>
@@ -1005,58 +1169,54 @@
     </div>
 
     <!-- jquery
-        ============================================ -->
-    <script src="js/vendor/jquery-1.11.3.min.js"></script>
+		============================================ -->
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <!-- bootstrap JS
-        ============================================ -->
+		============================================ -->
     <script src="js/bootstrap.min.js"></script>
     <!-- wow JS
-        ============================================ -->
+		============================================ -->
     <script src="js/wow.min.js"></script>
     <!-- price-slider JS
-        ============================================ -->
+		============================================ -->
     <script src="js/jquery-price-slider.js"></script>
     <!-- meanmenu JS
-        ============================================ -->
+		============================================ -->
     <script src="js/jquery.meanmenu.js"></script>
     <!-- owl.carousel JS
-        ============================================ -->
+		============================================ -->
     <script src="js/owl.carousel.min.js"></script>
     <!-- sticky JS
-        ============================================ -->
+		============================================ -->
     <script src="js/jquery.sticky.js"></script>
     <!-- scrollUp JS
-        ============================================ -->
+		============================================ -->
     <script src="js/jquery.scrollUp.min.js"></script>
     <!-- mCustomScrollbar JS
-        ============================================ -->
+		============================================ -->
     <script src="js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/scrollbar/mCustomScrollbar-active.js"></script>
     <!-- metisMenu JS
-        ============================================ -->
+		============================================ -->
     <script src="js/metisMenu/metisMenu.min.js"></script>
     <script src="js/metisMenu/metisMenu-active.js"></script>
     <!-- morrisjs JS
-        ============================================ -->
+		============================================ -->
     <script src="js/sparkline/jquery.sparkline.min.js"></script>
     <script src="js/sparkline/jquery.charts-sparkline.js"></script>
     <!-- calendar JS
-        ============================================ -->
+		============================================ -->
     <script src="js/calendar/moment.min.js"></script>
     <script src="js/calendar/fullcalendar.min.js"></script>
     <script src="js/calendar/fullcalendar-active.js"></script>
-    <!-- summernote JS
-        ============================================ -->
-    <script src="js/summernote/summernote.min.js"></script>
-    <script src="js/summernote/summernote-active.js"></script>
     <!-- tab JS
-        ============================================ -->
+		============================================ -->
     <script src="js/tab.js"></script>
     <!-- plugins JS
-        ============================================ -->
+		============================================ -->
     <script src="js/plugins.js"></script>
     <!-- main JS
-        ============================================ -->
+		============================================ -->
     <script src="js/main.js"></script>
 </body>
 

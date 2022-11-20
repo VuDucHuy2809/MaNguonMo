@@ -71,7 +71,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="back-link back-backend">
-                    <a href="index.html" class="btn btn-primary">Back to Home</a>
+                    <a href="index.php" class="btn btn-primary">Back to Home</a>
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
                                 <p class="help-block small">(if this is a private computer)</p>
                             </div>
                             <button class="btn btn-success btn-block loginbtn">Login</button>
-                            <a class="btn btn-default btn-block" href="Register.html">Register</a>
+                            <a class="btn btn-default btn-block" href="Register.php">Register</a>
                         </form>
                     </div>
                 </div>

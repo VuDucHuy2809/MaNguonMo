@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 
 class Account extends Authenticatable
 {
@@ -43,4 +44,9 @@ class Account extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public static function getAllCus()
+    {
+        return DB::select(' SELECT accounts.user_id,accounts.email,accounts.password,customer.name,customer.address,customer.phone FROM accounts,customer WHERE accounts.customer_id=customer.customer_id');
+    }
+   
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AccountController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
@@ -31,11 +32,11 @@ Route::post('login', [AuthController::class, 'login']);
 // Route::get('products',[ProductController::class,'index']);
 // Route::post('products',[ProductController::class,'store']);
 // Route::get('products/{id}',[ProductController::class,'show']);
-// Route::put('products/{id}/update',[ProductController::class,'update']);
+ Route::post('products/{id}/update',[ProductController::class,'update']);
 // Route::delete('products/{id}',[ProductController::class,'destroy']);
 Route::apiResource('products',ProductController::class);
 Route::apiResource('product_attributes',ProductAttributeController::class);
-
+Route::apiResource('accounts',AccountController::class);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('logout',[AuthController::class,'logout']);
 });

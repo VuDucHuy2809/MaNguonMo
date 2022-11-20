@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Inbox </title>
+    <title>Product List</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -19,6 +19,9 @@
     <!-- Bootstrap CSS
 		============================================ -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
+	<!-- nalika Icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="css/nalika-icon.css">
     <!-- owl.carousel CSS
 		============================================ -->
     <link rel="stylesheet" href="css/owl.carousel.css">
@@ -62,6 +65,23 @@
 </head>
 
 <body>
+    <?php
+
+        if(isset($_GET['page']))
+       {
+            $url='http://localhost:8000/api/products?page='.$_GET['page'];
+            $json = file_get_contents($url);  
+        }
+        else
+        {
+            $json = file_get_contents('http://localhost:8000/api/products');
+        }
+        $obj = json_decode($json);
+        $product=$obj->products;
+        $products=$product->data;
+        
+        //var_dump($obj2);
+    ?>
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -69,19 +89,19 @@
    <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                <a href="index.php"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
                 <strong><img src="img/logo/logosn.png" alt="" /></strong>
             </div>
             <div class="nalika-profile">
                 <div class="profile-dtl">
                     <a href="#"><img src="img/huy.jpg" alt="" /></a>
-                    <h2>ADMIN <span class="min-dtn"></span></h2>
+                    <h2>HuyCute<span class="min-dtn"></span></h2>
                 </div>
                 <div class="profile-social-dtl">
                     <ul class="dtl-social">
-                        <li><a href="#"><i class="icon nalika-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon nalika-twitter"></i></a></li>
-                        <li><a href="#"><i class="icon nalika-linkedin"></i></a></li>
+                        <li><a href="https://www.facebook.com/huycutehihi.2809"><i class="icon nalika-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/v37771030"><i class="icon nalika-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/__hheehhe__/"><i class="icon nalika-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -89,41 +109,34 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li class="active">
-                            <a class="has-arrow" href="index.html">
+                            <a class="has-arrow" href="index.php">
                                    <i class="icon nalika-home icon-wrap"></i>
                                    <span class="mini-click-non">Ecommerce</span>
                                 </a>
                             <ul class="submenu-angle" aria-expanded="true">
-                                <li><a title="Home" href="index.html"><span class="mini-sub-pro">Home</span></a></li>
-                                <li><a title="Product List" href="product-list.html"><span class="mini-sub-pro">Product List</span></a></li>
-                                <li><a title="Product Edit" href="product-edit.html"><span class="mini-sub-pro">Product Edit</span></a></li>
-                                <li><a title="Product Detail" href="product-detail.html"><span class="mini-sub-pro">Product Detail</span></a></li>
-                                <li><a title="Product Cart" href="product-cart.html"><span class="mini-sub-pro">Product Cart</span></a></li>
-                                <li><a title="Product Payment" href="product-payment.html"><span class="mini-sub-pro">Product Payment</span></a></li>
+                                <li><a title="Home" href="index.php"><span class="mini-sub-pro">Home</span></a></li>
+                                <li><a title="Product List" href="product-list.php"><span class="mini-sub-pro">Product List</span></a></li>
+                                <li><a title="Product Edit" href="#"><span class="mini-sub-pro">Product Edit</span></a></li>
+                                <li><a title="Product Detail" href="product-detail.php"><span class="mini-sub-pro">Product Detail</span></a></li>
+                                <li><a title="User" href="user-list.php"><span class="mini-sub-pro">User List</span></a></li>
+                                <li><a title="Product Payment" href="product-payment.php"><span class="mini-sub-pro">Product Payment</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-mail icon-wrap"></i> <span class="mini-click-non">Mailbox</span></a>
+                            <a class="has-arrow" href="mailbox.php" aria-expanded="false"><i class="icon nalika-mail icon-wrap"></i> <span class="mini-click-non">Mailbox</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Inbox" href="mailbox.html"><span class="mini-sub-pro">Inbox</span></a></li>
-                                <li><a title="View Mail" href="mailbox-view.html"><span class="mini-sub-pro">View Mail</span></a></li>
-                                <li><a title="Compose Mail" href="mailbox-compose.html"><span class="mini-sub-pro">Compose Mail</span></a></li>
+                                <li><a title="Inbox" href="mailbox.php"><span class="mini-sub-pro">Inbox</span></a></li>
+                                <li><a title="View Mail" href="mailbox-view.php"><span class="mini-sub-pro">View Mail</span></a></li>
+                                <li><a title="Compose Mail" href="mailbox-compose.php"><span class="mini-sub-pro">Compose Mail</span></a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-diamond icon-wrap"></i> <span class="mini-click-non">Interface</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Google Map" href="google-map.html"><span class="mini-sub-pro">Google Map</span></a></li>
-                                <li><a title="Preloader" href="preloader.html"><span class="mini-sub-pro">Preloader</span></a></li>
-                            </ul>
-                        </li>   
+                       
                         <li id="removable">
                             <a class="has-arrow" href="#" aria-expanded="false"><i class="icon nalika-new-file icon-wrap"></i> <span class="mini-click-non">Pages</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Login" href="login.html"><span class="mini-sub-pro">Login</span></a></li>
-                                <li><a title="Register" href="register.html"><span class="mini-sub-pro">Register</span></a></li>
-                                <li><a title="Lock" href="lock.html"><span class="mini-sub-pro">Lock</span></a></li>
-                                <li><a title="Password Recovery" href="password-recovery.html"><span class="mini-sub-pro">Password Recovery</span></a></li>
+                                <li><a title="Login" href="login.php"><span class="mini-sub-pro">Login</span></a></li>
+                                <li><a title="Lock" href="lock.php"><span class="mini-sub-pro">Lock</span></a></li>
+                                <li><a title="Password Recovery" href="password-recovery.php"><span class="mini-sub-pro">Password Recovery</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -137,7 +150,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
-                        <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                        <a href="index.php"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -152,29 +165,25 @@
                                     <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
                                         <div class="menu-switcher-pro">
                                             <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
-													<i class="fa fa-bars"></i>
-												</button>
+                                                    <i class="icon nalika-menu-task"></i>
+                                                </button>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
-                                        <div class="header-top-menu tabl-d-n">
-                                            <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="#" class="nav-link">Home</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">About</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Services</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Support</a>
-                                                </li>
-                                            </ul>
+                                        <div class="header-top-menu tabl-d-n hd-search-rp">
+                                            <div class="breadcome-heading">
+                                                <form role="search" class="">
+                                                    <input type="text" placeholder="Search..." class="form-control">
+                                                    <a href=""><i class="fa fa-search"></i></a>
+                                                </form>
+                                            </div>data
                                         </div>
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">
                                                 <li class="nav-item dropdown">
-                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-envelope-o adminpro-chat-pro" aria-hidden="true"></i><span class="indicator-ms"></span></a>
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="icon nalika-mail" aria-hidden="true"></i><span class="indicator-ms"></span></a>
                                                     <div role="menu" class="author-message-top dropdown-menu animated zoomIn">
                                                         <div class="message-single-top">
                                                             <h1>Message</h1>
@@ -234,7 +243,7 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-bell-o" aria-hidden="true"></i><span class="indicator-nt"></span></a>
+                                                <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="icon nalika-alarm" aria-hidden="true"></i><span class="indicator-nt"></span></a>
                                                     <div role="menu" class="notification-author dropdown-menu animated zoomIn">
                                                         <div class="notification-single-top">
                                                             <h1>Notifications</h1>
@@ -243,7 +252,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="notification-icon">
-                                                                        <i class="fa fa-check adminpro-checked-pro admin-check-pro" aria-hidden="true"></i>
+                                                                        <i class="icon nalika-tick" aria-hidden="true"></i>
                                                                     </div>
                                                                     <div class="notification-content">
                                                                         <span class="notification-date">16 Sept</span>
@@ -255,7 +264,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="notification-icon">
-                                                                        <i class="fa fa-cloud adminpro-cloud-computing-down" aria-hidden="true"></i>
+                                                                        <i class="icon nalika-cloud" aria-hidden="true"></i>
                                                                     </div>
                                                                     <div class="notification-content">
                                                                         <span class="notification-date">16 Sept</span>
@@ -267,7 +276,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="notification-icon">
-                                                                        <i class="fa fa-eraser adminpro-shield" aria-hidden="true"></i>
+                                                                        <i class="icon nalika-folder" aria-hidden="true"></i>
                                                                     </div>
                                                                     <div class="notification-content">
                                                                         <span class="notification-date">16 Sept</span>
@@ -279,7 +288,7 @@
                                                             <li>
                                                                 <a href="#">
                                                                     <div class="notification-icon">
-                                                                        <i class="fa fa-line-chart adminpro-analytics-arrow" aria-hidden="true"></i>
+                                                                        <i class="icon nalika-bar-chart" aria-hidden="true"></i>
                                                                     </div>
                                                                     <div class="notification-content">
                                                                         <span class="notification-date">16 Sept</span>
@@ -296,24 +305,20 @@
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-															<i class="fa fa-user adminpro-user-rounded header-riht-inf" aria-hidden="true"></i>
-															<span class="admin-name">Advanda Cro</span>
-															<i class="fa fa-angle-down adminpro-icon adminpro-down-arrow"></i>
-														</a>
+                                                            <i class="icon nalika-user"></i>
+                                                            <span class="admin-name">HuyCute</span>
+                                                            <i class="icon nalika-down-arrow nalika-angle-dw"></i>
+                                                        </a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                        <li><a href="register.html"><span class="fa fa-home author-log-ic"></span>Register</a>
+                                                        <li><a href="#"><span class="icon nalika-user author-log-ic"></span> My Profile</a>
                                                         </li>
-                                                        <li><a href="#"><span class="fa fa-user author-log-ic"></span>My Profile</a>
+                                                        <li><a href="#"><span class="icon nalika-settings author-log-ic"></span> Settings</a>
                                                         </li>
-                                                        <li><a href="lock.html"><span class="fa fa-diamond author-log-ic"></span> Lock</a>
-                                                        </li>
-                                                        <li><a href="#"><span class="fa fa-cog author-log-ic"></span>Settings</a>
-                                                        </li>
-                                                        <li><a href="login.html"><span class="fa fa-lock author-log-ic"></span>Log Out</a>
+                                                        <li><a href="login.php"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa fa-tasks"></i></a>
+                                                <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="icon nalika-menu-task"></i></a>
 
                                                     <div role="menu" class="admintab-wrap menu-setting-wrap menu-setting-wrap-bg dropdown-menu animated zoomIn">
                                                         <ul class="nav nav-tabs custon-set-tab">
@@ -329,7 +334,7 @@
                                                             <div id="Notes" class="tab-pane fade in active">
                                                                 <div class="notes-area-wrap">
                                                                     <div class="note-heading-indicate">
-                                                                        <h2><i class="fa fa-comments-o"></i> Latest News</h2>
+                                                                        <h2><i class="icon nalika-chat"></i> Latest News</h2>
                                                                         <p>You have 10 New News.</p>
                                                                     </div>
                                                                     <div class="notes-list-area notes-menu-scrollbar">
@@ -471,7 +476,7 @@
                                                             <div id="Projects" class="tab-pane fade">
                                                                 <div class="projects-settings-wrap">
                                                                     <div class="note-heading-indicate">
-                                                                        <h2><i class="fa fa-cube"></i> Recent Activity</h2>
+                                                                        <h2><i class="icon nalika-happiness"></i> Recent Activity</h2>
                                                                         <p> You have 20 Recent Activity.</p>
                                                                     </div>
                                                                     <div class="project-st-list-area project-st-menu-scrollbar">
@@ -571,7 +576,7 @@
                                                             <div id="Settings" class="tab-pane fade">
                                                                 <div class="setting-panel-area">
                                                                     <div class="note-heading-indicate">
-                                                                        <h2><i class="fa fa-gears"></i> Settings Panel</h2>
+                                                                        <h2><i class="icon nalika-gear"></i> Settings Panel</h2>
                                                                         <p> You have 20 Settings. 5 not completed.</p>
                                                                     </div>
                                                                     <ul class="setting-panel-list">
@@ -583,9 +588,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example">
                                                                                             <label class="onoffswitch-label" for="example">
-																									<span class="onoffswitch-inner"></span>
-																									<span class="onoffswitch-switch"></span>
-																								</label>
+                                                                                                    <span class="onoffswitch-inner"></span>
+                                                                                                    <span class="onoffswitch-switch"></span>
+                                                                                                </label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -599,9 +604,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example3">
                                                                                             <label class="onoffswitch-label" for="example3">
-																									<span class="onoffswitch-inner"></span>
-																									<span class="onoffswitch-switch"></span>
-																								</label>
+                                                                                                    <span class="onoffswitch-inner"></span>
+                                                                                                    <span class="onoffswitch-switch"></span>
+                                                                                                </label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -615,9 +620,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example4">
                                                                                             <label class="onoffswitch-label" for="example4">
-																									<span class="onoffswitch-inner"></span>
-																									<span class="onoffswitch-switch"></span>
-																								</label>
+                                                                                                    <span class="onoffswitch-inner"></span>
+                                                                                                    <span class="onoffswitch-switch"></span>
+                                                                                                </label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -631,9 +636,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example7">
                                                                                             <label class="onoffswitch-label" for="example7">
-																									<span class="onoffswitch-inner"></span>
-																									<span class="onoffswitch-switch"></span>
-																								</label>
+                                                                                                    <span class="onoffswitch-inner"></span>
+                                                                                                    <span class="onoffswitch-switch"></span>
+                                                                                                </label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -647,9 +652,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" checked="" class="onoffswitch-checkbox" id="example2">
                                                                                             <label class="onoffswitch-label" for="example2">
-																									<span class="onoffswitch-inner"></span>
-																									<span class="onoffswitch-switch"></span>
-																								</label>
+                                                                                                    <span class="onoffswitch-inner"></span>
+                                                                                                    <span class="onoffswitch-switch"></span>
+                                                                                                </label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -663,9 +668,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" checked="" class="onoffswitch-checkbox" id="example6">
                                                                                             <label class="onoffswitch-label" for="example6">
-																									<span class="onoffswitch-inner"></span>
-																									<span class="onoffswitch-switch"></span>
-																								</label>
+                                                                                                    <span class="onoffswitch-inner"></span>
+                                                                                                    <span class="onoffswitch-switch"></span>
+                                                                                                </label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -679,9 +684,9 @@
                                                                                         <div class="onoffswitch">
                                                                                             <input type="checkbox" name="collapsemenu" checked="" class="onoffswitch-checkbox" id="example5">
                                                                                             <label class="onoffswitch-label" for="example5">
-																									<span class="onoffswitch-inner"></span>
-																									<span class="onoffswitch-switch"></span>
-																								</label>
+                                                                                                    <span class="onoffswitch-inner"></span>
+                                                                                                    <span class="onoffswitch-switch"></span>
+                                                                                                </label>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -711,40 +716,110 @@
                             <div class="mobile-menu">
                                 <nav id="dropdown">
                                     <ul class="mobile-menu-nav">
-                                        <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul class="collapse dropdown-header-top">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="product-list.html">Product List</a></li>
-                                                <li><a href="product-edit.html">Product Edit</a></li>
-                                                <li><a href="product-detail.html">Product Detail</a></li>
-                                                <li><a href="product-cart.html">Product Cart</a></li>
-                                                <li><a href="product-payment.html">Product Payment</a></li>
+                                                <li><a href="index.php">Dashboard v.1</a></li>
+                                                <li><a href="index-1.php">Dashboard v.2</a></li>
+                                                <li><a href="index-3.php">Dashboard v.3</a></li>
+                                                <li><a href="product-list.php">Product List</a></li>
+                                                <li><a href="#">Product Edit</a></li>
+                                                <li><a href="product-detail.php">Product Detail</a></li>
+                                                <li><a href="user-list.php">User List</a></li>
+                                                <li><a href="product-payment.php">Product Payment</a></li>
+                                                <li><a href="analytics.php">Analytics</a></li>
+                                                <li><a href="widgets.php">Widgets</a></li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#demo" href="#">Mailbox <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#demo" href="#">Mailbox <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="demo" class="collapse dropdown-header-top">
-                                                <li><a href="mailbox.html">Inbox</a>
+                                                <li><a href="mailbox.php">Inbox</a>
                                                 </li>
-                                                <li><a href="mailbox-view.html">View Mail</a>
+                                                <li><a href="mailbox-view.php">View Mail</a>
                                                 </li>
-                                                <li><a href="mailbox-compose.html">Compose Mail</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">Interface <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                                            <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
-                                                <li><a href="google-map.html">Google Map</a>
-                                                </li>
-                                                <li><a href="data-maps.html">Data Maps</a>
+                                                <li><a href="mailbox-compose.php">Compose Mail</a>
                                                 </li>
                                             </ul>
                                         </li>
-    
-                                        <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Pages <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#others" href="#">Miscellaneous <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
+                                            <ul id="others" class="collapse dropdown-header-top">
+                                                <li><a href="file-manager.php">File Manager</a></li>
+                                                <li><a href="contacts.php">Contacts Client</a></li>
+                                                <li><a href="projects.php">Project</a></li>
+                                                <li><a href="project-details.php">Project Details</a></li>
+                                                <li><a href="blog.php">Blog</a></li>
+                                                <li><a href="blog-details.php">Blog Details</a></li>
+                                                <li><a href="404.php">404 Page</a></li>
+                                                <li><a href="500.php">500 Page</a></li>
+                                            </ul>
+                                        </li>
+                                        
+                                        <li><a data-toggle="collapse" data-target="#Chartsmob" href="#">Charts <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
+                                            <ul id="Chartsmob" class="collapse dropdown-header-top">
+                                                <li><a href="bar-charts.php">Bar Charts</a>
+                                                </li>
+                                                <li><a href="line-charts.php">Line Charts</a>
+                                                </li>
+                                                <li><a href="area-charts.php">Area Charts</a>
+                                                </li>
+                                                <li><a href="rounded-chart.php">Rounded Charts</a>
+                                                </li>
+                                                <li><a href="c3.php">C3 Charts</a>
+                                                </li>
+                                                <li><a href="sparkline.php">Sparkline Charts</a>
+                                                </li>
+                                                <li><a href="peity.php">Peity Charts</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a data-toggle="collapse" data-target="#Tablesmob" href="#">Tables <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
+                                            <ul id="Tablesmob" class="collapse dropdown-header-top">
+                                                <li><a href="static-table.php">Static Table</a>
+                                                </li>
+                                                <li><a href="data-table.php">Data Table</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a data-toggle="collapse" data-target="#formsmob" href="#">Forms <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
+                                            <ul id="formsmob" class="collapse dropdown-header-top">
+                                                <li><a href="basic-form-element.php">Basic Form Elements</a>
+                                                </li>
+                                                <li><a href="advance-form-element.php">Advanced Form Elements</a>
+                                                </li>
+                                                <li><a href="password-meter.php">Password Meter</a>
+                                                </li>
+                                                <li><a href="multi-upload.php">Multi Upload</a>
+                                                </li>
+                                                <li><a href="tinymc.php">Text Editor</a>
+                                                </li>
+                                                <li><a href="dual-list-box.php">Dual List Box</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a data-toggle="collapse" data-target="#Appviewsmob" href="#">App views <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
+                                            <ul id="Appviewsmob" class="collapse dropdown-header-top">
+                                                <li><a href="basic-form-element.php">Basic Form Elements</a>
+                                                </li>
+                                                <li><a href="advance-form-element.php">Advanced Form Elements</a>
+                                                </li>
+                                                <li><a href="password-meter.php">Password Meter</a>
+                                                </li>
+                                                <li><a href="multi-upload.php">Multi Upload</a>
+                                                </li>
+                                                <li><a href="tinymc.php">Text Editor</a>
+                                                </li>
+                                                <li><a href="dual-list-box.php">Dual List Box</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Pages <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="Pagemob" class="collapse dropdown-header-top">
-                                                <li><a href="login.html">Login</a>
+                                                <li><a href="login.php">Login</a>
                                                 </li>
-                                                <li><a href="password-recovery.html">Password Recovery</a>
+                                                <li><a href="register.php">Register</a>
+                                                </li>
+                                                <li><a href="lock.php">Lock</a>
+                                                </li>
+                                                <li><a href="password-recovery.php">Password Recovery</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -760,23 +835,23 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="breadcome-list single-page-breadcome">
+							<div class="breadcome-list">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <div class="breadcome-heading">
-                                            <form role="search" class="">
-                                                <input type="text" placeholder="Search..." class="form-control">
-                                                <a href=""><i class="fa fa-search"></i></a>
-                                            </form>
-                                        </div>
+                                        <div class="breadcomb-wp">
+											<div class="breadcomb-icon">
+												<i class="icon nalika-home"></i>
+											</div>
+											<div class="breadcomb-ctn">
+												<h2>Product List</h2>
+												<p>Welcome to BestStore <span class="bread-ntd"></span></p>
+											</div>
+										</div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                        <ul class="breadcome-menu">
-                                            <li><a href="#">Home</a> <span class="bread-slash">/</span>
-                                            </li>
-                                            <li><span class="bread-blod">Inbox</span>
-                                            </li>
-                                        </ul>
+                                        <div class="breadcomb-report">
+											<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="icon nalika-download"></i></button>
+										</div>
                                     </div>
                                 </div>
                             </div>
@@ -785,360 +860,57 @@
                 </div>
             </div>
         </div>
-        <div class="mailbox-area mg-tb-15">
+        <div class="product-status mg-b-30">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3 col-md-3 col-sm-3 col-xs-12">
-                        <div class="hpanel responsive-mg-b-30">
-                            <div class="panel-body">
-
-                                <ul class="mailbox-list">
-                                    <li class="active">
-                                        <a href="#">
-												<span class="pull-right">12</span>
-												<i class="fa fa-envelope"></i> Inbox
-											</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-paper-plane"></i> Sent</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-pencil"></i> Draft</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-trash"></i> Trash</a>
-                                    </li>
-                                </ul>
-                                <hr>
-                                <ul class="mailbox-list">
-                                    <li>
-                                        <a href="#"><i class="fa fa-plane text-danger"></i> Travel</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-bar-chart text-warning"></i> Finance</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-users text-info"></i> Social</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-tag text-success"></i> Promos</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-flag text-primary"></i> Updates</a>
-                                    </li>
-                                </ul>
-                                <hr>
-                                <ul class="mailbox-list">
-                                    <li>
-                                        <a href="#"><i class="fa fa-gears"></i> Settings</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-info-circle"></i> Support</a>
-                                    </li>
-                                </ul>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-status-wrap">
+                            <h4>Products List</h4>
+                            <div class="add-product">
+                                <a href="#">Add Product</a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9 col-md-9 col-sm-9 col-xs-12">
-                        <div class="hpanel mg-b-15">
-                            <div class="panel-heading hbuilt mailbox-hd">
-                                <div class="text-center p-xs font-normal">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control input-sm" placeholder="Search email in your inbox..."> <span class="input-group-btn"> <button type="button" class="btn btn-sm btn-default">Search
-											</button> </span></div>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 mg-b-15">
-                                        <div class="btn-group">
-                                            <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i> Refresh</button>
-                                            <button class="btn btn-default btn-sm"><i class="fa fa-eye"></i></button>
-                                            <button class="btn btn-default btn-sm"><i class="fa fa-exclamation"></i></button>
-                                            <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                                            <button class="btn btn-default btn-sm"><i class="fa fa-check"></i></button>
-                                            <button class="btn btn-default btn-sm"><i class="fa fa-tag"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 mailbox-pagination mg-b-15">
-                                        <div class="btn-group">
-                                            <button class="btn btn-default btn-sm"><i class="fa fa-arrow-left"></i></button>
-                                            <button class="btn btn-default btn-sm"><i class="fa fa-arrow-right"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-mailbox">
-                                        <tbody>
-                                            <tr class="unread">
-                                                <td class="">
-                                                    <div class="checkbox checkbox-single checkbox-success">
-                                                        <input type="checkbox" checked>
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Jeremy Massey</a></td>
-                                                <td><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                                                </td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td class="text-right mail-date">Tue, Nov 25</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Marshall Horne</a></td>
-                                                <td><a href="#">Praesent nec nisl sed neque ornare maximus at ac enim.</a>
-                                                </td>
-                                                <td></td>
-                                                <td class="text-right mail-date">Wed, Jan 13</td>
-                                            </tr>
-                                            <tr class="active">
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Grant Franco</a> <span class="label label-warning">Finance</span></td>
-                                                <td><a href="#">Etiam maximus tellus a turpis tempor mollis.</a></td>
-                                                <td></td>
-                                                <td class="text-right mail-date">Mon, Oct 19</td>
-                                            </tr>
-                                            <tr class="unread active">
-                                                <td class="">
-                                                    <div class="checkbox checkbox-single">
-                                                        <input type="checkbox" checked>
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Ferdinand Meadows</a></td>
-                                                <td><a href="#">Aenean hendrerit ligula eget augue gravida semper.</a></td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td class="text-right mail-date">Sat, Aug 29</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="">
-                                                    <div class="checkbox checkbox-single">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Ivor Rios</a> <span class="label label-info">Social</span>
-                                                </td>
-                                                <td><a href="#">Sed quis augue in nunc venenatis finibus.</a></td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td class="text-right mail-date">Sat, Dec 12</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Maxwell Murphy</a></td>
-                                                <td><a href="#">Quisque eu tortor quis justo viverra cursus.</a></td>
-                                                <td></td>
-                                                <td class="text-right mail-date">Sun, May 17</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Henry Patterson</a></td>
-                                                <td><a href="#">Aliquam nec justo interdum, ornare mi non, elementum
-														lacus.</a></td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td class="text-right mail-date">Thu, Aug 06</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Brent Rasmussen</a></td>
-                                                <td><a href="#">Nam nec turpis sed quam tristique sodales.</a></td>
-                                                <td></td>
-                                                <td class="text-right mail-date">Sun, Nov 15</td>
-                                            </tr>
-                                            <tr class="unread">
-                                                <td class="">
-                                                    <div class="checkbox checkbox-single checkbox-success">
-                                                        <input type="checkbox" checked>
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Joseph Hurley</a></td>
-                                                <td><a href="#">Nullam tempus leo id urna sagittis blandit.</a></td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td class="text-right mail-date">Sun, Aug 10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Alan Matthews</a></td>
-                                                <td><a href="#">Quisque quis turpis ac quam sagittis scelerisque vel ut
-														urna.</a></td>
-                                                <td></td>
-                                                <td class="text-right mail-date">Sun, Mar 27</td>
-                                            </tr>
-                                            <tr class="active">
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Colby Lynch</a> <span class="label label-danger">Travel</span></td>
-                                                <td><a href="#">Donec non enim pulvinar, ultrices metus eget, condimentum
-														mi.</a></td>
-                                                <td></td>
-                                                <td class="text-right mail-date">Thu, Dec 31</td>
-                                            </tr>
-                                            <tr class="unread">
-                                                <td class="">
-                                                    <div class="checkbox checkbox-single checkbox-success">
-                                                        <input type="checkbox" checked>
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Jeremy Massey</a></td>
-                                                <td><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                                                </td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td class="text-right mail-date">Tue, Nov 25</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Marshall Horne</a></td>
-                                                <td><a href="#">Praesent nec nisl sed neque ornare maximus at ac enim.</a>
-                                                </td>
-                                                <td></td>
-                                                <td class="text-right mail-date">Wed, Jan 13</td>
-                                            </tr>
-                                            <tr class="active">
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Grant Franco</a> <span class="label label-warning">Finance</span></td>
-                                                <td><a href="#">Etiam maximus tellus a turpis tempor mollis.</a></td>
-                                                <td></td>
-                                                <td class="text-right mail-date">Mon, Oct 19</td>
-                                            </tr>
-                                            <tr class="unread active">
-                                                <td class="">
-                                                    <div class="checkbox checkbox-single">
-                                                        <input type="checkbox" checked>
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Ferdinand Meadows</a></td>
-                                                <td><a href="#">Aenean hendrerit ligula eget augue gravida semper.</a></td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td class="text-right mail-date">Sat, Aug 29</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="">
-                                                    <div class="checkbox checkbox-single">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Ivor Rios</a> <span class="label label-info">Social</span>
-                                                </td>
-                                                <td><a href="#">Sed quis augue in nunc venenatis finibus.</a></td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td class="text-right mail-date">Sat, Dec 12</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Maxwell Murphy</a></td>
-                                                <td><a href="#">Quisque eu tortor quis justo viverra cursus.</a></td>
-                                                <td></td>
-                                                <td class="text-right mail-date">Sun, May 17</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Henry Patterson</a></td>
-                                                <td><a href="#">Aliquam nec justo interdum, ornare mi non, elementum
-														lacus.</a></td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td class="text-right mail-date">Thu, Aug 06</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Brent Rasmussen</a></td>
-                                                <td><a href="#">Nam nec turpis sed quam tristique sodales.</a></td>
-                                                <td></td>
-                                                <td class="text-right mail-date">Sun, Nov 15</td>
-                                            </tr>
-                                            <tr class="unread">
-                                                <td class="">
-                                                    <div class="checkbox checkbox-single checkbox-success">
-                                                        <input type="checkbox" checked>
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Joseph Hurley</a></td>
-                                                <td><a href="#">Nullam tempus leo id urna sagittis blandit.</a></td>
-                                                <td><i class="fa fa-paperclip"></i></td>
-                                                <td class="text-right mail-date">Sun, Aug 10</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="">
-                                                    <div class="checkbox">
-                                                        <input type="checkbox">
-                                                        <label></label>
-                                                    </div>
-                                                </td>
-                                                <td><a href="#">Alan Matthews</a></td>
-                                                <td><a href="#">Quisque quis turpis ac quam sagittis scelerisque vel ut
-														urna.</a></td>
-                                                <td></td>
-                                                <td class="text-right mail-date">Sun, Mar 27</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="panel-footer">
-                                <i class="fa fa-eye"> </i> 6 unread
+                            <table>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Product Title</th>
+                                    <th>Status</th>
+                                    <th>Purchases</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Sale Price</th>
+                                    <th>Setting</th>
+                                </tr>
+                                <?php
+                                foreach($products as $value)
+                                {
+                                echo "<tr>
+                                    <td><img src='".$value->image."' alt='' /></td>
+                                    <td>".$value->name."</td>
+                                    <td>
+                                        <button class='pd-setting'>Active</button>
+                                    </td>
+                                    <td>".$value->quantity."</td>
+                                    <td>".$value->price."$</td>
+                                    <td>Out Of Stock</td>
+                                    <td>".$value->sale_price."$</td>
+                                    <td>
+                                        <a href='./product-edit.php?id=".$value->product_id."'><button data-toggle='tooltip' title='Edit' class='pd-setting-ed'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>";
+                                        echo '<a onclick="return confirm(\'Are you sure?\')" href="./product-delete.php?id='.$value->product_id.'"><button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>';
+                                    echo "</td>
+                                </tr>";
+                                }
+                                ?>
+                            </table>
+                            <div class="custom-pagination">
+                            <?php
+                            $page=$product->last_page;
+                            for($i=1;$i<=$page;$i++)
+                            {
+								echo "<ul class='pagination'>";
+								echo" <li class='page-item'><a class='page-link' href='http://localhost/project/MaNguonMo/nalika-master/nalika/product-list.php?page=".$i."'>".$i."</a></li>";					
+								echo "</ul>";
+                            }
+                            ?>
                             </div>
                         </div>
                     </div>
@@ -1150,7 +922,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="footer-copy-right">
-                            <p>Copyright © 2018 <a href="https://colorlib.com/wp/templates/">Colorlib</a> All rights reserved.</p>
+                              <p>Design Đức Huy đẹp trai nhất hệ mặt trời <a href="https://www.facebook.com/huycutehihi.2809">Click Here </a></p>
                         </div>
                     </div>
                 </div>
@@ -1160,7 +932,7 @@
 
     <!-- jquery
 		============================================ -->
-    <script src="js/vendor/jquery-1.11.3.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <!-- bootstrap JS
 		============================================ -->
     <script src="js/bootstrap.min.js"></script>
@@ -1199,9 +971,6 @@
     <script src="js/calendar/moment.min.js"></script>
     <script src="js/calendar/fullcalendar.min.js"></script>
     <script src="js/calendar/fullcalendar-active.js"></script>
-    <!-- tab JS
-		============================================ -->
-    <script src="js/tab.js"></script>
     <!-- plugins JS
 		============================================ -->
     <script src="js/plugins.js"></script>
