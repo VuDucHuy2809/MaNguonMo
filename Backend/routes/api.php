@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\GoogleAuthController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\OrderDetailController;
 use App\Http\Controllers\api\ProductAttributeController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ResetPasswordController;
@@ -38,24 +39,34 @@ Route::apiResource('products',ProductController::class);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('logout',[AuthController::class,'logout']);
-    Route::get('orders',[OrderController::class,'showOrder']);
+    
     //Order
+    Route::get('orders',[OrderController::class,'showOrder']);
     Route::post('orders',[OrderController::class,'addNewOrder']);
+    Route::put('orders/{order_id}',[OrderController::class,'update']);
+
+    //OrderDetail
+    Route::get('orderdetails/{order_id}',[OrderDetailController::class,'showOrderDetails']);
+
+    //Test some function
+    Route::get('product/test',[ProductController::class,'test']);
 });
 Route::middleware('auth:sanctum')->get('/user', function () {
 
 });
+
 Route::post('reset-password', [ResetPasswordController::class,'sendMail']);
 Route::put('reset-password/{token}', [ResetPasswordController::class,'reset']);
 
 // Route::post('/upload-image',[Controller::class,'uploadImage']); 
 
-Route::get('categories',[CategoryController::class,'index']);
+// Route::get('categories',[CategoryController::class,'index']);
 Route::get('subcategories',[SubcategoryController::class,'index']);
+
+
 
 // Route::post('auth/google',[GoogleAuthController::class,'redirect']);
 
+Route::get('product/test2',[ProductController::class,'test2']);
 
 
-//Test some function
-Route::get('product/test',[ProductController::class,'test']);

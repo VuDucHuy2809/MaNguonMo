@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,7 @@ class OrderController extends Controller
         
         $order = new Order();
         $order->user_id = Auth::id();
-        $order->status = 1;
+        $order->status = 'Ordered';
         $order->total = $request->total;
         $order->address = $request->address;
         $order->save();
@@ -35,9 +36,15 @@ class OrderController extends Controller
                 $orderDetail->price = $item['price'];
                 $orderDetail->quantity = $item['quantity'];
                 $orderDetail->subtotal = $item['subtotal'];
+                $orderDetail->size = $item['size'];
                 $orderDetail->save();
+                $product=Product::find($item['product_id']);
+                $product->quantity-= $item['quantity'];
+                $product->update();
             }
+            return response()->json(['message'=>'Order Successfully!']);
         }
+        return response()->json(['message'=>'Fail!']);
         
     }
     public function showOrder()
@@ -53,6 +60,7 @@ class OrderController extends Controller
             return response()->json(['message'=>'No Order Found'],404);
         }
     }
+    //for admin
     public function index()
     {
         $orders=Order::all();
@@ -64,5 +72,37 @@ class OrderController extends Controller
         {
             return response()->json(['message'=>'No Order Found'],404);
         }
+    }
+    public function update($id)
+    {
+        $order=Order::find($id);
+        $user_id=Auth::id();
+        $user = Account::find($user_id);
+        if($user->is_admin == 0){
+            if($order->status == 'Ordered')
+            {
+                $order->status = 'Canceled';
+                $order->update();
+                $orderItem = OrderDetail::where('order_id',$id)->get();
+                foreach($orderItem as $item)
+                {
+                    $product = Product::find($item->product_id);
+                    $product->quantity += $item['quantity'];
+                    $product->update();
+                }
+                return response()->json(['message'=>'Cancel Order Successfully!']);
+            }
+            else
+            {
+                return response()->json(['message'=>'You cannot cancel this order']);
+            }  
+        }
+        // elseif($user->is_admin == 1)
+        // {
+        //     switch($order->status){
+        //         case
+        //     }
+        // }
+           
     }
 }

@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
+use App\Models\Category;
+use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -45,7 +50,6 @@ class ProductController extends Controller
             'description'=> 'required',
             'status'=>'required',
             'brand_id'=>'required',
-            'size_id'=>'required'
         ]);
         $product= new Product;
         $product->subcate_id = $request->subcate_id;
@@ -55,7 +59,6 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->status  = $request->status;
         $product->brand_id = $request->brand_id;
-        $product->size_id = $request->size_id;
         if($request->discount_id)
             {
                 $product->discount_id = $request->discount_id;
@@ -120,7 +123,6 @@ class ProductController extends Controller
             'description'=> 'required',
             'status'=>'required',
             'brand_id'=>'required',
-            'size_id'=>'required'
         ]); 
         $product= Product::find($id);
         //return response()->json(['message'=>'Product Update  Successfully'],200);
@@ -133,7 +135,6 @@ class ProductController extends Controller
             $product->description = $request->description;
             $product->status  = $request->status;
             $product->brand_id = $request->brand_id;
-            $product->size_id = $request->size_id;
             if($request->discount_id)
             {
                 $product->discount_id = $request->discount_id;
@@ -177,5 +178,14 @@ class ProductController extends Controller
         {
             return response()->json(['message','No Product Found']);
         }
+    }
+    public function test()
+    {
+        // $user = Account::find($user_id=Auth::id());
+        // return $user->is_admin;
+    }
+    public function test2()
+    {
+        
     }
 }
