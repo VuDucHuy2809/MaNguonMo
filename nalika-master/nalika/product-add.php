@@ -881,6 +881,7 @@
                                     <li><a href="#reviews"><i class="icon nalika-picture" aria-hidden="true"></i> Pictures</a></li>
                                     <li><a href="#INFORMATION"><i class="icon nalika-chat" aria-hidden="true"></i> Review</a></li>
                                 </ul>
+                                <form method="post" action="product-insert.php">
                                 <div id="myTabContent" class="tab-content custom-product-edit">
                                     <div class="product-tab-list tab-pane fade active in" id="description">
                                         <div class="row">
@@ -888,23 +889,23 @@
                                                 <div class="review-content-section">
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><i class="icon nalika-user" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Product Name">
+                                                        <input name='name' type="text" class="form-control" placeholder="Product Name">
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><i class="icon nalika-edit" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Description">
+                                                        <input name='description' type="text" class="form-control" placeholder="Description">
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Regular Price">
+                                                        <input name='price' type="text" class="form-control" placeholder="Regular Price">
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><i class="icon nalika-new-file" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Sale_Price">
+                                                        <input name='sale_price' type="text" class="form-control" placeholder="Sale_Price">
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><i class="icon nalika-favorites" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Quantity">
+                                                        <input name='quantity' type="text" class="form-control" placeholder="Quantity">
                                                     </div>
                                                 </div>
                                             </div>
@@ -926,13 +927,15 @@
                                                         <span class="input-group-addon"><i class="icon nalika-like" aria-hidden="true"></i></span>
                                                         <input type="text" class="form-control" placeholder="Category">
                                                     </div>
-                                                    <select name="select" class="form-control pro-edt-select form-control-primary">
-															<option value="opt1">Select One Value Only</option>
-															<option value="opt2">2</option>
-															<option value="opt3">3</option>
-															<option value="opt4">4</option>
-															<option value="opt5">5</option>
-															<option value="opt6">6</option>
+                                                    <select name="subcate_id" class="form-control pro-edt-select form-control-primary">
+															<option value="1">SHIRT-MEN</option>
+															<option value="2">JEAN-MEN</option>
+															<option value="3">DRESS-WOMEN</option>
+															<option value="4">JEAN-WOMEN</option>
+															<option value="5">WALLETS</option>
+															<option value="6">SHOES</option>
+                                                            <option value="7">WATCHES</option>
+                                                            <option value="8">BLAZER</option>
 														</select>
                                                 </div>
                                             </div>
@@ -940,7 +943,7 @@
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="text-center custom-pro-edt-ds">
-                                                    <button type="button" class="btn btn-ctl-bt waves-effect waves-light m-r-10">Save
+                                                    <button type="submit" class="btn btn-ctl-bt waves-effect waves-light m-r-10">Save
 														</button>
                                                     <button type="button" class="btn btn-ctl-bt waves-effect waves-light">Discard
 														</button>
@@ -948,6 +951,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    </form>
                                     <div class="product-tab-list tab-pane fade" id="reviews">
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

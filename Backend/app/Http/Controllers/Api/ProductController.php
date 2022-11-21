@@ -41,9 +41,10 @@ class ProductController extends Controller
             'subcate_id'=>'required',
             'quantity'=>'required|numeric',
             'price' => 'required|numeric',
-            'image' =>'required',
-            'description'=> 'required',
-            'status'=>'required'    
+            'sale_price'=>'required|numeric',
+            //'image' =>'required',
+            'description'=> 'required'
+            //'status'=>'required'    
         ]);
         $product= new Product;
         $product->name = $request->name;
@@ -51,17 +52,19 @@ class ProductController extends Controller
         $product->quantity = $request->quantity;
         $product->price = $request->price;
         $product->description = $request->description;
-        $product->status  = $request->status;
+        //$product->status  = $request->status;
         $product->sale_price=$request->sale_price;
-
+        $product->status=1;
         // $imageName = Carbon::now()->timestamp.'.'.$request->image->extension();
         // $request->image->storeAs('products',$imageName);
         // $product->image = $imageName;
         //$product->image=Controller::uploadImage($request->file('image'));
-        $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
-        $product->image=$response;
-        $product->save();
-        return response()->json(['message'=>'Product Added Successfully','test'=>$request->image],200);
+        /*$response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+        $product->image=$response;*/
+        if($product->save())
+            return response()->json(['message'=>'Product Added Successfully','test'=>$request->image],200);
+        else
+            return response()->json(['message'=>'Product Added Fail']);
     }
 
     /**
