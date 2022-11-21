@@ -40,9 +40,10 @@ class OrderController extends Controller
         }
         
     }
-    public function showOrder($id)
+    public function showOrder()
     {
-        $order=Order::find($id);
+        $user_id = Auth::id();
+        $order = Order::where('user_id',$user_id)->get();
         if($order)
         {
             return response()->json(['order'=>$order],200);

@@ -41,7 +41,7 @@ Route::apiResource('products',ProductController::class);
 Route::apiResource('accounts',AccountController::class);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('logout',[AuthController::class,'logout']);
-    Route::get('orders/{id}',[OrderController::class,'showOrder']);
+    Route::get('orders',[OrderController::class,'showOrder']);
     //Order
     Route::post('orders',[OrderController::class,'addNewOrder']);
 });
