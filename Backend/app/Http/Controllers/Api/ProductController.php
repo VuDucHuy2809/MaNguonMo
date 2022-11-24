@@ -205,6 +205,21 @@ class ProductController extends Controller
     {
         $search = $request->search;
     }
+
+    public function showProductByCategory($slug)
+    {
+        $subcate = SubCategory::where('slug',$slug)->first();
+        $subcate_id=$subcate->_id;
+        $products = Product::where('subcate_id',$subcate_id)->paginate(8);
+        if($products)
+        {
+            return response()->json($products,200);
+        }
+        else
+        {
+            return response()->json(['message','No Product Found'],404);
+        }
+    }
     public function test()
     {
         // $user = Account::find($user_id=Auth::id());

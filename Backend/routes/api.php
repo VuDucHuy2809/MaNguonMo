@@ -35,6 +35,7 @@ Route::post('login', [AuthController::class, 'login']);
 // Route::post('products',[ProductController::class,'store']);
 // Route::get('products/{id}',[ProductController::class,'show']);
  Route::post('products/{id}/update',[ProductController::class,'update']);
+ Route::get('products/category/{slug}',[ProductController::class,'showProductByCategory']);
 // Route::delete('products/{id}',[ProductController::class,'destroy']);
 Route::apiResource('products',ProductController::class);
 Route::get('statistical1',[ProductController::class,'statistical1']);
