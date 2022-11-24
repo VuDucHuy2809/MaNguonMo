@@ -35,7 +35,7 @@ class OrderController extends Controller
                 $orderDetail->product_id = $item['product_id'];
                 $orderDetail->price = $item['price'];
                 $orderDetail->quantity = $item['quantity'];
-                $orderDetail->subtotal = $item['price']*$item['quantity'];
+                $orderDetail->subtotal = $item['subtotal'];
                 $orderDetail->size = $item['size'];
                 $orderDetail->save();
                 $product=Product::find($item['product_id']);
