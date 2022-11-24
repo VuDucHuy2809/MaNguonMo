@@ -70,3 +70,5 @@ Route::get('subcategories',[SubcategoryController::class,'index']);
 Route::get('product/test2',[ProductController::class,'test2']);
 
 
+//Filter 
+Route::Get('product/{subcate_id}',[ProductController::class,'filterByCategoryID']);

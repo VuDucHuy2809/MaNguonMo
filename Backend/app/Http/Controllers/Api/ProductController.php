@@ -179,6 +179,23 @@ class ProductController extends Controller
             return response()->json(['message','No Product Found']);
         }
     }
+    public function filterByCategoryID($id)
+    {
+        $product = Product::where('subcate_id',$id)->get();
+        if($product)
+        {
+             return response()->json(['product'=>$product],200);
+        }
+        else
+        {
+            return response()->json(['message','No Product Found'],404);
+        }
+    }
+
+    public function searchProduct(Request $request)
+    {
+        $search = $request->search;
+    }
     public function test()
     {
         // $user = Account::find($user_id=Auth::id());
