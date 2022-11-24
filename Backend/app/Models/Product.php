@@ -34,7 +34,7 @@ class Product extends Model
     }
     public function subCate()
     {
-        return $this->belongsTo(SubCategory::class,'subcate_id','subcate_id');
+        return $this->belongsTo(SubCategory::class,'subcate_id','_id');
     }
     public static function getStatistical1()
     {

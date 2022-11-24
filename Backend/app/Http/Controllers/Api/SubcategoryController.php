@@ -15,7 +15,7 @@ class SubcategoryController extends Controller
         $subcate=SubCategory::all();
         if($subcate)
         {
-            return response()->json(['subcate'=>$subcate],200);
+            return response()->json($subcate,200);
         }
         else 
         {
@@ -27,7 +27,7 @@ class SubcategoryController extends Controller
         $subcate=SubCategory::find($id);
         if($subcate)
         {
-            return response()->json(['subcate'=>$subcate],200);
+            return response()->json($subcate,200);
         }
         else 
         {
