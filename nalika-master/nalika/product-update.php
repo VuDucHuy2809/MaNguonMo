@@ -1,9 +1,12 @@
 <?php
+    try
+    {
     $data = array("name"=>$_GET['name'],
                   "quantity"=>$_GET['quantity'],
                   "price"=>$_GET['price'],
                   "description"=>$_GET['description'],
-                  "status"=>$_GET['status']   
+                  "status"=>$_GET['status'],
+                  "subcate_id"=>$_GET['subcate_id']   
                 );
     $data_json = json_encode($data);
     $url='http://localhost:8000/api/products/'.$_GET['id'];
@@ -22,4 +25,12 @@
         alert('".$mess."');
         window.location.href='product-list.php';
         </script>";
+    }
+    catch(\Error $e)
+    {
+      echo "<script>
+      alert('Update product fail!');
+      window.location.href='product-list.php';
+      </script>";
+    }
 ?>

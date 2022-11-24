@@ -1,4 +1,6 @@
 <?php
+  try
+  {
     $data = array("name"=>$_GET['name'],
                   "phone"=>$_GET['phone'],
                   "address"=>$_GET['address']  
@@ -20,4 +22,12 @@
         alert('".$mess."');
         window.location.href='user-list.php';
         </script>";
+    }
+    catch(\Error $e)
+    {
+      echo "<script>
+      alert('Update user fail!');
+      window.location.href='product-list.php';
+      </script>";
+    }
 ?>

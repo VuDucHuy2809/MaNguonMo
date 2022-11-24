@@ -40,6 +40,18 @@ class OrderController extends Controller
         }
         
     }
+    public function showOrderDetail($id)
+    {
+        $order=Order::getDetailOrder($id);
+        if($order)
+        {
+            return response()->json(['orders'=>$order],200);
+        }
+        else
+        {
+            return response()->json(['message'=>'No Order Found'],404);
+        }
+    }
     public function showOrder()
     {
         $user_id = Auth::id();
@@ -64,5 +76,32 @@ class OrderController extends Controller
         {
             return response()->json(['message'=>'No Order Found'],404);
         }
+    }
+    public function updateStatus($id)
+    {
+        $order= Order::find($id);
+        if($order->status=="Ordered")
+        {
+            $order->status="Confirmed";
+            $order->update();
+            return response()->json(['message'=>'Status update success(confirmed)'],200);
+        }
+        else if($order->status=="Confirmed")
+        {
+            $order->status="Delivered";
+            $order->update();
+            return response()->json(['message'=>'Status update success(delivery)'],200);
+        }
+        else
+        {
+            return response()->json(['message'=>'Fail'],200);
+        }
+    }
+    public function cancelStatus($id)
+    {
+        $order= Order::find($id);
+        $order->status="Cancelled";
+        $order->update();
+        return response()->json(['message'=>'Status update success(cancelled)'],200);
     }
 }

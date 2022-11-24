@@ -67,6 +67,8 @@
 <body>
     <?php
 
+use Cloudinary\Transformation\Qualifier\Dimensions\Height;
+
         if(isset($_GET['page']))
        {
             $url='http://localhost:8000/api/products?page='.$_GET['page'];
@@ -117,7 +119,7 @@
                                 <li><a title="Home" href="index.php"><span class="mini-sub-pro">Home</span></a></li>
                                 <li><a title="Product List" href="product-list.php"><span class="mini-sub-pro">Product List</span></a></li>
                                 <li><a title="Product Edit" href="#"><span class="mini-sub-pro">Product Edit</span></a></li>
-                                <li><a title="Product Detail" href="product-detail.php"><span class="mini-sub-pro">Product Detail</span></a></li>
+                                <li><a title="Product Detail" href="bill-list.php"><span class="mini-sub-pro">Bill List</span></a></li>
                                 <li><a title="User" href="user-list.php"><span class="mini-sub-pro">User List</span></a></li>
                                 <li><a title="Product Payment" href="product-payment.php"><span class="mini-sub-pro">Product Payment</span></a></li>
                             </ul>
@@ -125,9 +127,9 @@
                         <li>
                             <a class="has-arrow" href="mailbox.php" aria-expanded="false"><i class="icon nalika-mail icon-wrap"></i> <span class="mini-click-non">Mailbox</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Inbox" href="mailbox.php"><span class="mini-sub-pro">Inbox</span></a></li>
-                                <li><a title="View Mail" href="mailbox-view.php"><span class="mini-sub-pro">View Mail</span></a></li>
-                                <li><a title="Compose Mail" href="mailbox-compose.php"><span class="mini-sub-pro">Compose Mail</span></a></li>
+                                <li><a title="Inbox" href="#"><span class="mini-sub-pro">Inbox</span></a></li>
+                                <li><a title="View Mail" href="#"><span class="mini-sub-pro">View Mail</span></a></li>
+                                <li><a title="Compose Mail" href="#"><span class="mini-sub-pro">Compose Mail</span></a></li>
                             </ul>
                         </li>
                        
@@ -723,7 +725,7 @@
                                                 <li><a href="index-3.php">Dashboard v.3</a></li>
                                                 <li><a href="product-list.php">Product List</a></li>
                                                 <li><a href="#">Product Edit</a></li>
-                                                <li><a href="product-detail.php">Product Detail</a></li>
+                                                <li><a href="bill-list.php">Bill List</a></li>
                                                 <li><a href="user-list.php">User List</a></li>
                                                 <li><a href="product-payment.php">Product Payment</a></li>
                                                 <li><a href="analytics.php">Analytics</a></li>
@@ -867,13 +869,12 @@
                         <div class="product-status-wrap">
                             <h4>Products List</h4>
                             <div class="add-product">
-                                <a href="#">Add Product</a>
+                                <a href="product-add.php">Add Product</a>
                             </div>
                             <table>
                                 <tr>
                                     <th>Image</th>
                                     <th>Product Title</th>
-                                    <th>Status</th>
                                     <th>Purchases</th>
                                     <th>Price</th>
                                     <th>Stock</th>
@@ -884,11 +885,8 @@
                                 foreach($products as $value)
                                 {
                                 echo "<tr>
-                                    <td><img src='".$value->image."' alt='' /></td>
+                                    <td><img style='Height:80px;width:80px;' src='".$value->image."' alt='' /></td>
                                     <td>".$value->name."</td>
-                                    <td>
-                                        <button class='pd-setting'>Active</button>
-                                    </td>
                                     <td>".$value->quantity."</td>
                                     <td>".$value->price."$</td>
                                     <td>Out Of Stock</td>

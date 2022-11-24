@@ -72,7 +72,7 @@
   <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                <a href="index.php"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
                 <strong><img src="img/logo/logosn.png" alt="" /></strong>
             </div>
             <div class="nalika-profile">
@@ -91,28 +91,27 @@
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
-                        <li class="active">
-                            <a class="has-arrow" href="index.html">
-                                   <i class="icon nalika-home icon-wrap"></i>
-                                   <span class="mini-click-non">Ecommerce</span>
-                                </a>
+                        <<li class="active">
+                            <a class="has-arrow" href="index.php">
+								   <i class="icon nalika-home icon-wrap"></i>
+								   <span class="mini-click-non">Ecommerce</span>
+								</a>
                             <ul class="submenu-angle" aria-expanded="true">
-                                <li><a title="Home" href="index.html"><span class="mini-sub-pro">Home</span></a></li>
-                                <li><a title="Product List" href="product-list.html"><span class="mini-sub-pro">Product List</span></a></li>
-                                <li><a title="Product Edit" href="product-edit.html"><span class="mini-sub-pro">Product Edit</span></a></li>
-                                <li><a title="Product Detail" href="product-detail.html"><span class="mini-sub-pro">Product Detail</span></a></li>
-                                 <li><a title="Add Product" href="add-product.html"><span class="mini-sub-pro">Add product</span></a></li>
-                                <li><a title="Product Cart" href="product-cart.html"><span class="mini-sub-pro">Product Cart</span></a></li>
-                                <li><a title="Product Payment" href="product-payment.html"><span class="mini-sub-pro">Product Payment</span></a></li>
+                                <li><a title="Home" href="index.php"><span class="mini-sub-pro">Home</span></a></li>
+                                <li><a title="Product List" href="product-list.php"><span class="mini-sub-pro">Product List</span></a></li>
+                                <li><a title="Product Edit" href="#"><span class="mini-sub-pro">Product Edit</span></a></li>
+                                <li><a title="Product Detail" href="bill-list.php"><span class="mini-sub-pro">Bill List</span></a></li>
+                                <li><a title="User" href="user-list.php"><span class="mini-sub-pro">User List</span></a></li>
+                                <li><a title="Product Payment" href="product-payment.php"><span class="mini-sub-pro">Product Payment</span></a></li>
                             </ul>
                         </li>
                         <li>
-                              <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-mail icon-wrap"></i> <span class="mini-click-non">User</span></a>
+                            <a class="has-arrow" href="#" aria-expanded="false"><i class="icon nalika-mail icon-wrap"></i> <span class="mini-click-non">Mailbox</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Product List" href="add-user.html"><span class="mini-sub-pro">Add-User</span></a></li>
-                                 <li><a title="Product List" href="user-edit.html"><span class="mini-sub-pro">User-Edit</span></a></li>
+                                <li><a title="Inbox" href="#"><span class="mini-sub-pro">Inbox</span></a></li>
+                                <li><a title="View Mail" href="#"><span class="mini-sub-pro">View Mail</span></a></li>
+                                <li><a title="Compose Mail" href="#"><span class="mini-sub-pro">Compose Mail</span></a></li>
                             </ul>
-                        </li>
                         <li>
                       <!--      <a class="has-arrow" href="mailbox.html" aria-expanded="false"><i class="icon nalika-diamond icon-wrap"></i> <span class="mini-click-non">Interface</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
@@ -123,9 +122,9 @@
                         <li id="removable">
                             <a class="has-arrow" href="#" aria-expanded="false"><i class="icon nalika-new-file icon-wrap"></i> <span class="mini-click-non">Pages</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Login" href="login.html"><span class="mini-sub-pro">Login</span></a></li>
-                                <li><a title="Lock" href="lock.html"><span class="mini-sub-pro">Lock</span></a></li>
-                                <li><a title="Password Recovery" href="password-recovery.html"><span class="mini-sub-pro">Password Recovery</span></a></li>
+                                <li><a title="Login" href="login.php"><span class="mini-sub-pro">Login</span></a></li>
+                                <li><a title="Lock" href="lock.php"><span class="mini-sub-pro">Lock</span></a></li>
+                                <li><a title="Password Recovery" href="password-recovery.php"><span class="mini-sub-pro">Password Recovery</span></a></li>
                             </ul>
                         </li> 
                     </ul> 
@@ -139,7 +138,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
-                        <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                        <a href="index.php"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -303,7 +302,7 @@
                                                         </li>
                                                         <li><a href="#"><span class="icon nalika-settings author-log-ic"></span> Settings</a>
                                                         </li>
-                                                        <li><a href="login.html"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
+                                                        <li><a href="login.php"><span class="icon nalika-unlocked author-log-ic"></span> Log Out</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -707,57 +706,57 @@
                                     <ul class="mobile-menu-nav">
                                         <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul class="collapse dropdown-header-top">
-                                                <li><a href="index.html">Dashboard v.1</a></li>
-                                                <li><a href="index-1.html">Dashboard v.2</a></li>
-                                                <li><a href="index-3.html">Dashboard v.3</a></li>
-                                                <li><a href="product-list.html">Product List</a></li>
-                                                <li><a href="product-edit.html">Product Edit</a></li>
-                                                <li><a href="product-detail.html">Product Detail</a></li>
-                                                <li><a href="product-cart.html">Product Cart</a></li>
-                                                <li><a href="product-payment.html">Product Payment</a></li>
-                                                <li><a href="analytics.html">Analytics</a></li>
-                                                <li><a href="widgets.html">Widgets</a></li>
+                                                <li><a href="index.php">Dashboard v.1</a></li>
+                                                <li><a href="index-1.php">Dashboard v.2</a></li>
+                                                <li><a href="index-3.php">Dashboard v.3</a></li>
+                                                <li><a href="product-list.php">Product List</a></li>
+                                                <li><a href="product-edit.php">Product Edit</a></li>
+                                                <li><a href="bill-list.php">Bill List</li>
+                                                <li><a href="product-cart.php">Product Cart</a></li>
+                                                <li><a href="product-payment.php">Product Payment</a></li>
+                                                <li><a href="analytics.php">Analytics</a></li>
+                                                <li><a href="widgets.php">Widgets</a></li>
                                             </ul>
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#demo" href="#">Mailbox <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="demo" class="collapse dropdown-header-top">
-                                                <li><a href="mailbox.html">Inbox</a>
+                                                <li><a href="mailbox.php">Inbox</a>
                                                 </li>
-                                                <li><a href="mailbox-view.html">View Mail</a>
+                                                <li><a href="mailbox-view.php">View Mail</a>
                                                 </li>
-                                                <li><a href="mailbox-compose.html">Compose Mail</a>
+                                                <li><a href="mailbox-compose.php">Compose Mail</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#others" href="#">Miscellaneous <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="others" class="collapse dropdown-header-top">
-                                                <li><a href="file-manager.html">File Manager</a></li>
-                                                <li><a href="contacts.html">Contacts Client</a></li>
-                                                <li><a href="projects.html">Project</a></li>
-                                                <li><a href="project-details.html">Project Details</a></li>
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="blog-details.html">Blog Details</a></li>
-                                                <li><a href="404.html">404 Page</a></li>
-                                                <li><a href="500.html">500 Page</a></li>
+                                                <li><a href="file-manager.php">File Manager</a></li>
+                                                <li><a href="contacts.php">Contacts Client</a></li>
+                                                <li><a href="projects.php">Project</a></li>
+                                                <li><a href="project-details.php">Project Details</a></li>
+                                                <li><a href="blog.php">Blog</a></li>
+                                                <li><a href="blog-details.php">Blog Details</a></li>
+                                                <li><a href="404.php">404 Page</a></li>
+                                                <li><a href="500.php">500 Page</a></li>
                                             </ul>
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">Interface <span class="admin-project-icon nalika-icon nalika-down-arrow"></span></a>
                                             <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
-                                                <li><a href="google-map.html">Google Map</a>
+                                                <li><a href="google-map.php">Google Map</a>
                                                 </li>
-                                                <li><a href="data-maps.html">Data Maps</a>
+                                                <li><a href="data-maps.php">Data Maps</a>
                                                 </li>
-                                                <li><a href="pdf-viewer.html">Pdf Viewer</a>
+                                                <li><a href="pdf-viewer.php">Pdf Viewer</a>
                                                 </li>
-                                                <li><a href="x-editable.html">X-Editable</a>
+                                                <li><a href="x-editable.php">X-Editable</a>
                                                 </li>
-                                                <li><a href="code-editor.html">Code Editor</a>
+                                                <li><a href="code-editor.php">Code Editor</a>
                                                 </li>
-                                                <li><a href="tree-view.html">Tree View</a>
+                                                <li><a href="tree-view.php">Tree View</a>
                                                 </li>
-                                                <li><a href="preloader.html">Preloader</a>
+                                                <li><a href="preloader.php">Preloader</a>
                                                 </li>
-                                                <li><a href="images-cropper.html">Images Cropper</a>
+                                                <li><a href="images-cropper.php">Images Cropper</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -881,7 +880,7 @@
                                     <li><a href="#reviews"><i class="icon nalika-picture" aria-hidden="true"></i> Pictures</a></li>
                                     <li><a href="#INFORMATION"><i class="icon nalika-chat" aria-hidden="true"></i> Review</a></li>
                                 </ul>
-                                <form method="post" action="product-insert.php">
+                                <form method="post" action="product-insert.php" enctype="multipart/form-data">
                                 <div id="myTabContent" class="tab-content custom-product-edit">
                                     <div class="product-tab-list tab-pane fade active in" id="description">
                                         <div class="row">
@@ -903,10 +902,8 @@
                                                         <span class="input-group-addon"><i class="icon nalika-new-file" aria-hidden="true"></i></span>
                                                         <input name='sale_price' type="text" class="form-control" placeholder="Sale_Price">
                                                     </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="icon nalika-favorites" aria-hidden="true"></i></span>
-                                                        <input name='quantity' type="text" class="form-control" placeholder="Quantity">
-                                                    </div>
+                                                    
+                                                    
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -924,8 +921,11 @@
                                                         <input type="text" class="form-control" placeholder="Sale Price">
                                                     </div> -->
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="icon nalika-like" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Category">
+                                                        <span class="input-group-addon"><i class="icon nalika-favorites" aria-hidden="true"></i></span>
+                                                        <input name='quantity' type="text" class="form-control" placeholder="Quantity">
+                                                    </div>
+                                                    <div class="input-group mg-b-pro-edt">
+                                                        <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
                                                     </div>
                                                     <select name="subcate_id" class="form-control pro-edt-select form-control-primary">
 															<option value="1">SHIRT-MEN</option>
@@ -943,7 +943,7 @@
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="text-center custom-pro-edt-ds">
-                                                    <button type="submit" class="btn btn-ctl-bt waves-effect waves-light m-r-10">Save
+                                                    <button name='submit' type="submit" class="btn btn-ctl-bt waves-effect waves-light m-r-10">Save
 														</button>
                                                     <button type="button" class="btn btn-ctl-bt waves-effect waves-light">Discard
 														</button>

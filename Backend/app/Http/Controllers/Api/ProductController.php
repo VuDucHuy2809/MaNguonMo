@@ -42,7 +42,7 @@ class ProductController extends Controller
             'quantity'=>'required|numeric',
             'price' => 'required|numeric',
             'sale_price'=>'required|numeric',
-            //'image' =>'required',
+            'image' =>'required',
             'description'=> 'required'
             //'status'=>'required'    
         ]);
@@ -55,12 +55,13 @@ class ProductController extends Controller
         //$product->status  = $request->status;
         $product->sale_price=$request->sale_price;
         $product->status=1;
+        $product->discount_id=1;
         // $imageName = Carbon::now()->timestamp.'.'.$request->image->extension();
         // $request->image->storeAs('products',$imageName);
         // $product->image = $imageName;
         //$product->image=Controller::uploadImage($request->file('image'));
-        /*$response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
-        $product->image=$response;*/
+        $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+        $product->image=$response;
         if($product->save())
             return response()->json(['message'=>'Product Added Successfully','test'=>$request->image],200);
         else
@@ -105,7 +106,8 @@ class ProductController extends Controller
             'quantity'=>'required',
             'price' => 'required',
             'description'=> 'required',
-            'status'=>'required'
+            'status'=>'required',
+            'subcate_id'=>'required'
         ]); 
         $product= Product::find($id);
         //return response()->json(['message'=>'Product Update  Successfully'],200);
@@ -116,6 +118,7 @@ class ProductController extends Controller
             $product->price = $request->price;
             $product->description = $request->description;
             $product->status  = $request->status;
+            $product->subcate_id=$request->subcate_id;
             $product->update();
             return response()->json(['message'=>'Product Update Successfully'],200);
         }
@@ -141,11 +144,24 @@ class ProductController extends Controller
         }
         else
         {
-            return response()->json(['message','No Product Found']);
+            return response()->json(['message'=>'No Product Found']);
         }
     }
     // public function paginateProduct($page)
     // {
         
     // }
+    public function statistical1()
+    {
+        $product=Product::getStatistical1();
+        return response()->json(['statistical'=>$product]);
+    }
+    public function statistical2()
+    {
+        for($i=1;$i<=12;$i++)
+        {
+            $product[$i]=Product::getStatistical2($i);
+        }
+        return response()->json(['statistical'=>$product]);
+    }
 }

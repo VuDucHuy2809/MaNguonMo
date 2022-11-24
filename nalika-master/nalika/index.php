@@ -1,3 +1,40 @@
+<?php
+       $url1='http://localhost:8000/api/statistical1';
+       $json1 = file_get_contents($url1);  
+       $obj1 = json_decode($json1);
+       $statistical=$obj1->statistical;
+       //var_dump($statistical);
+       for($j=1;$j<=8;$j++)
+       {
+           $i[$j]=0;
+       }
+       foreach($statistical as $value)
+       {
+           $i[$value->subcate_id]=$value->id;
+       }
+       $url2='http://localhost:8000/api/statistical2';
+       $json2 = file_get_contents($url2);  
+       $obj2 = json_decode($json2);
+       $statistical2=$obj2->statistical;
+       //var_dump($statistical2);
+       for($n=1;$n<=12;$n++)
+       {
+            $m[$n]=$statistical2->$n;
+       }
+
+       for($k=1;$k<=12;$k++)
+       {
+            foreach($m[$k] as $value)
+            {
+                $v[$k]=$value->tt;
+                if($v[$k]==NULL)
+                {
+                    $v[$k]=0;
+                }
+            }
+       }
+       var_dump($v);
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -61,10 +98,90 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- modernizr JS
 		============================================ -->
+        
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      <?php echo "function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Revenue'],
+          ['1',  ".$v[1]."],
+          ['2',  ".$v[2]."],
+          ['3',  ".$v[3]."],
+          ['4', ".$v[4]."],
+          ['5', ".$v[5]."],
+          ['6',  ".$v[6]."],
+          ['7', ".$v[7]."],
+          ['8',  ".$v[8]."],
+          ['9',  ".$v[9]."],
+          ['10',  ".$v[10]."],
+          ['11', ".$v[11]."],
+          ['12',  ".$v[12]."]
+        ]);";
+        ?>
+        var options = {
+          title: 'Monthly Revenues',
+          hAxis: {title: 'Month',  titleTextStyle: {color: '#1b2a47'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      function drawChart() {
+        <?php
+        echo "var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['SHIRT-MEN',     ".$i[1]."],
+          ['JEAN-MEN',  ".$i[2]."],
+          ['DRESS-WOMEN',      ".$i[3]."],
+          ['JEAN-WOMEN',  ".$i[4]."],
+          ['WALLET', ".$i[5]."],
+          ['SHOES',    ".$i[6]."],
+          ['WATCHES', ".$i[7]."],
+          ['BLAZER',    ".$i[8]."]
+        ]);";
+        ?>
+
+        var options = {
+          title: 'Trending'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    
 </head>
 
 <body>
+<?php
+            /*$url1='http://localhost:8000/api/statistical1';
+            $json1 = file_get_contents($url1);  
+            $obj1 = json_decode($json1);
+            $statistical=$obj1->statistical;
+            var_dump($statistical);
+            for($j=1;$j<=8;$j++)
+            {
+                $i[$j]=0;
+            }
+            foreach($statistical as $value)
+            {
+                $i[$value->subcate_id]=$value->id;
+            }
+            var_dump($i);*/
+        ?>
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -99,18 +216,18 @@
                             <ul class="submenu-angle" aria-expanded="true">
                                 <li><a title="Home" href="index.php"><span class="mini-sub-pro">Home</span></a></li>
                                 <li><a title="Product List" href="product-list.php"><span class="mini-sub-pro">Product List</span></a></li>
-                                <li><a title="Product Edit" href="product-edit.php"><span class="mini-sub-pro">Product Edit</span></a></li>
-                                <li><a title="Product Detail" href="product-detail.php"><span class="mini-sub-pro">Product Detail</span></a></li>
+                                <li><a title="Product Edit" href="#"><span class="mini-sub-pro">Product Edit</span></a></li>
+                                <li><a title="Product Detail" href="bill-list.php"><span class="mini-sub-pro">Bill List</span></a></li>
                                 <li><a title="User" href="user-list.php"><span class="mini-sub-pro">User List</span></a></li>
                                 <li><a title="Product Payment" href="product-payment.php"><span class="mini-sub-pro">Product Payment</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="mailbox.php" aria-expanded="false"><i class="icon nalika-mail icon-wrap"></i> <span class="mini-click-non">Mailbox</span></a>
+                            <a class="has-arrow" href="#" aria-expanded="false"><i class="icon nalika-mail icon-wrap"></i> <span class="mini-click-non">Mailbox</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Inbox" href="mailbox.php"><span class="mini-sub-pro">Inbox</span></a></li>
-                                <li><a title="View Mail" href="mailbox-view.php"><span class="mini-sub-pro">View Mail</span></a></li>
-                                <li><a title="Compose Mail" href="mailbox-compose.php"><span class="mini-sub-pro">Compose Mail</span></a></li>
+                                <li><a title="Inbox" href="#"><span class="mini-sub-pro">Inbox</span></a></li>
+                                <li><a title="View Mail" href="#"><span class="mini-sub-pro">View Mail</span></a></li>
+                                <li><a title="Compose Mail" href="#"><span class="mini-sub-pro">Compose Mail</span></a></li>
                             </ul>
                         </li>
                         <li id="removable">
@@ -920,7 +1037,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="caption pro-sl-hd">
-                                            <span class="caption-subject text-uppercase"><b>Product Sales</b></span>
+                                            <span class="caption-subject text-uppercase"><b></b></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -935,7 +1052,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="curved-line-chart" class="flot-chart-sts flot-chart curved-chart-statistic"></div>
+                            <div id="chart_div" style=" background-color: #152036;width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -979,190 +1096,39 @@
                 </div>
             </div>
         </div>
-        <div class="traffic-analysis-area">
+        <div class="product-sales-area mg-tb-30">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="white-box tranffic-als-inner">
-                            <h3 class="box-title"><small class="pull-right m-t-10 text-success last-month-sc cl-one"><i class="fa fa-sort-asc"></i> 18% last month</small> Site Traffic</h3>
-                            <div class="stats-row">
-                                <div class="stat-item">
-                                    <h6>Overall Growth</h6>
-                                    <b>80.40%</b></div>
-                                <div class="stat-item">
-                                    <h6>Montly</h6>
-                                    <b>15.40%</b></div>
-                                <div class="stat-item">
-                                    <h6>Day</h6>
-                                    <b>5.50%</b></div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                        <div class="product-sales-chart">
+                            <div class="portlet-title">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="caption pro-sl-hd">
+                                            <span class="caption-subject text-uppercase"><b></b></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="actions graph-rp">
+                                            <div class="btn-group" data-toggle="buttons">
+                                                <label class="btn btn-grey active">
+													<input type="radio" name="options" class="toggle" id="option1" checked="">Today</label>
+                                                <label class="btn btn-grey">
+													<input type="radio" name="options" class="toggle" id="option2">Week</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="sparkline8"></div>
+                            <div id="piechart" style="width: 955px; height: 500px;"></div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="white-box tranffic-als-inner res-mg-t-30">
-                            <h3 class="box-title"><small class="pull-right m-t-10 text-danger last-month-sc cl-two"><i class="fa fa-sort-desc"></i> 18% last month</small>Site Traffic</h3>
-                            <div class="stats-row">
-                                <div class="stat-item">
-                                    <h6>Overall Growth</h6>
-                                    <b>80.40%</b></div>
-                                <div class="stat-item">
-                                    <h6>Montly</h6>
-                                    <b>15.40%</b></div>
-                                <div class="stat-item">
-                                    <h6>Day</h6>
-                                    <b>5.50%</b></div>
-                            </div>
-                            <div id="sparkline9"></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="white-box tranffic-als-inner res-mg-t-30">
-                            <h3 class="box-title"><small class="pull-right m-t-10 text-success last-month-sc cl-three"><i class="fa fa-sort-asc"></i> 18% last month</small>Site Traffic</h3>
-                            <div class="stats-row">
-                                <div class="stat-item">
-                                    <h6>Overall Growth</h6>
-                                    <b>80.40%</b></div>
-                                <div class="stat-item">
-                                    <h6>Montly</h6>
-                                    <b>15.40%</b></div>
-                                <div class="stat-item">
-                                    <h6>Day</h6>
-                                    <b>5.50%</b></div>
-                            </div>
-                            <div id="sparkline10"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="product-new-list-area">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                        <div class="single-new-trend mg-t-30">
-                            <a href="#"><img src="img/new-product/5.png" alt=""></a>
-                            <div class="overlay-content">
-                                <a href="#">
-                                    <h2>$280</h2>
-                                </a>
-                                <a href="#" class="btn-small">Now</a>
-                                <div class="product-action">
-                                    <ul>
-                                        <li>
-                                            <a data-toggle="tooltip" title="Shopping" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="tooltip" title="Quick view" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <a class="pro-tlt" href="#">
-                                    <h4>Princes Diamond</h4>
-                                </a>
-                                <div class="pro-rating">
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="icon nalika-half-filled-rating-star color"></i>
-                                    <i class="icon nalika-half-filled-rating-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                        <div class="single-new-trend mg-t-30">
-                            <a href="#"><img src="img/new-product/5.png" alt=""></a>
-                            <div class="overlay-content">
-                                <a href="#">
-                                    <h2>$280</h2>
-                                </a>
-                                <a href="#" class="btn-small">Now</a>
-                                <div class="product-action">
-                                    <ul>
-                                        <li>
-                                            <a data-toggle="tooltip" title="Shopping" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="tooltip" title="Quick view" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <a href="#">
-                                    <h4>Princes Diamond</h4>
-                                </a>
-                                <div class="pro-rating">
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="icon nalika-half-filled-rating-star color"></i>
-                                    <i class="icon nalika-half-filled-rating-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                        <div class="single-new-trend mg-t-30">
-                            <a href="#"><img src="img/new-product/5.png" alt=""></a>
-                            <div class="overlay-content">
-                                <a href="#">
-                                    <h2>$280</h2>
-                                </a>
-                                <a href="#" class="btn-small">Now</a>
-                                <div class="product-action">
-                                    <ul>
-                                        <li>
-                                            <a data-toggle="tooltip" title="Shopping" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="tooltip" title="Quick view" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <a href="#">
-                                    <h4>Princes Diamond</h4>
-                                </a>
-                                <div class="pro-rating">
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="icon nalika-half-filled-rating-star color"></i>
-                                    <i class="icon nalika-half-filled-rating-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                        <div class="single-new-trend mg-t-30">
-                            <a href="#"><img src="img/new-product/5.png" alt=""></a>
-                            <div class="overlay-content">
-                                <a href="#">
-                                    <h2>$280</h2>
-                                </a>
-                                <a href="#" class="btn-small">Now</a>
-                                <div class="product-action">
-                                    <ul>
-                                        <li>
-                                            <a data-toggle="tooltip" title="Shopping" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="tooltip" title="Quick view" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <a href="#">
-                                    <h4>Princes Diamond</h4>
-                                </a>
-                                <div class="pro-rating">
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="icon nalika-half-filled-rating-star color"></i>
-                                    <i class="icon nalika-half-filled-rating-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    
+                    
                 </div>
             </div>
         </div>

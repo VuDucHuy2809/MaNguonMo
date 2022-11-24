@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -35,5 +35,13 @@ class Product extends Model
     public function subCate()
     {
         return $this->belongsTo(SubCategory::class,'subcate_id','subcate_id');
+    }
+    public static function getStatistical1()
+    {
+        return DB::select("SELECT product.subcate_id,SUM(orderdetail.quantity) AS id FROM product,orderdetail WHERE`product`.`product_id`=orderdetail.product_id GROUP BY product.subcate_id");
+    }
+    public static function getStatistical2($month)
+    {
+        return DB::select("SELECT SUM(`order`.`total`) AS tt FROM `order` WHERE `order`.created_at BETWEEN '2022-0".$month."-01' AND '2022-0".$month."-31'");
     }
 }
