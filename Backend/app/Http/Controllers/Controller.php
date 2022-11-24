@@ -15,13 +15,13 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function uploadImage(Request $request)
+    public function uploadImage($request)
     {
         try{
-            if(!$request->hasFile('file')){
+            if(!$request->hasFile('image')){
                 return response()->json(['message'=>'file is required'],202);
             }
-            $response = cloudinary()->upload($request->file('file')->getRealPath())->getSecurePath();
+            $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
             return $response;
         }catch(\Exception $e)
         {

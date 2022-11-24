@@ -48,4 +48,5 @@ class Account extends Authenticatable
     {
         return DB::select(' SELECT * FROM Accounts');
     }
+
 }

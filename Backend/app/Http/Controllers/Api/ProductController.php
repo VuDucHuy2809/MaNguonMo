@@ -7,6 +7,7 @@ use App\Models\Account;
 use App\Models\Category;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use Carbon\Carbon;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,6 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public $temp;
     /**
      * Display a listing of the resource.
      *
@@ -44,20 +44,28 @@ class ProductController extends Controller
     {
         $request->validate([
             'name'=>'required',
+            'subcate_id'=>'required',
             'quantity'=>'required|numeric',
             'price' => 'required|numeric',
+            'sale_price'=>'required|numeric',
             'image' =>'required',
             'description'=> 'required',
-            'status'=>'required',
-            'brand_id'=>'required',
+            //'status'=>'required'    
         ]);
         $product= new Product;
-        $product->subcate_id = $request->subcate_id;
         $product->name = $request->name;
+        $product->subcate_id=$request->subcate_id;
         $product->quantity = $request->quantity;
         $product->price = $request->price;
         $product->description = $request->description;
-        $product->status  = $request->status;
+        //$product->status  = $request->status;
+        $product->sale_price=$request->sale_price;
+        $product->status=1;
+        $product->discount_id=1;
+        // $imageName = Carbon::now()->timestamp.'.'.$request->image->extension();
+        // $request->image->storeAs('products',$imageName);
+        // $product->image = $imageName;
+        //$product->image=Controller::uploadImage($request->file('image'));
         $product->brand_id = $request->brand_id;
         if($request->discount_id)
             {
@@ -76,10 +84,11 @@ class ProductController extends Controller
                 $product->sale_price=0;
             }
         $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
-
         $product->image=$response;
-        $product->save();
-        return response()->json(['message'=>'Product Added Successfully'],200);
+        if($product->save())
+            return response()->json(['message'=>'Product Added Successfully','test'=>$request->image],200);
+        else
+            return response()->json(['message'=>'Product Added Fail']);
     }
 
     /**
@@ -117,18 +126,16 @@ class ProductController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'quantity'=>'required|numeric',
-            'price' => 'required|numeric',
-            'image' =>'required',
+            'quantity'=>'required',
+            'price' => 'required',
             'description'=> 'required',
             'status'=>'required',
-            'brand_id'=>'required',
+            'subcate_id'=>'required'
         ]); 
         $product= Product::find($id);
         //return response()->json(['message'=>'Product Update  Successfully'],200);
         if($product)
         {
-            $product->subcate_id = $request->subcate_id;
             $product->name = $request->name;
             $product->quantity = $request->quantity;
             $product->price = $request->price;
@@ -176,9 +183,28 @@ class ProductController extends Controller
         }
         else
         {
-            return response()->json(['message','No Product Found']);
+            return response()->json(['message'=>'No Product Found']);
         }
     }
+    // public function paginateProduct($page)
+    // {
+        
+    // }
+    public function statistical1()
+    {
+        $product=Product::getStatistical1();
+        return response()->json(['statistical'=>$product]);
+    }
+    public function statistical2()
+    {
+        for($i=1;$i<=12;$i++)
+        {
+            $product[$i]=Product::getStatistical2($i);
+        }
+        return response()->json(['statistical'=>$product]);
+    }
+}
+
     public function filterByCategoryID($id)
     {
         $product = Product::where('subcate_id',$id)->get();
