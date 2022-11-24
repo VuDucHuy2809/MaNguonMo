@@ -47,7 +47,7 @@ class ProductController extends Controller
             'subcate_id'=>'required',
             'quantity'=>'required|numeric',
             'price' => 'required|numeric',
-            'sale_price'=>'required|numeric',
+            // 'sale_price'=>'required|numeric',
             'image' =>'required',
             'description'=> 'required',
             //'status'=>'required'    
@@ -66,23 +66,7 @@ class ProductController extends Controller
         // $request->image->storeAs('products',$imageName);
         // $product->image = $imageName;
         //$product->image=Controller::uploadImage($request->file('image'));
-        $product->brand_id = $request->brand_id;
-        if($request->discount_id)
-            {
-                $product->discount_id = $request->discount_id;
-            }
-            else
-            {
-                $product->discount_id = 0;
-            }
-        if($request->sale_price)
-            {
-                $product->sale_price=$request->sale_price;
-            }
-        else
-            {
-                $product->sale_price=0;
-            }
+        // $product->brand_id = $request->brand_id;
         $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
         $product->image=$response;
         if($product->save())
@@ -141,7 +125,7 @@ class ProductController extends Controller
             $product->price = $request->price;
             $product->description = $request->description;
             $product->status  = $request->status;
-            $product->brand_id = $request->brand_id;
+            $product->subcate_id = $request->subcate_id;
             if($request->discount_id)
             {
                 $product->discount_id = $request->discount_id;
@@ -203,7 +187,6 @@ class ProductController extends Controller
         }
         return response()->json(['statistical'=>$product]);
     }
-}
 
     public function filterByCategoryID($id)
     {

@@ -905,7 +905,7 @@ use Cloudinary\Transformation\Qualifier\Dimensions\Height;
                             for($i=1;$i<=$page;$i++)
                             {
 								echo "<ul class='pagination'>";
-								echo" <li class='page-item'><a class='page-link' href='http://localhost/project/MaNguonMo/nalika-master/nalika/product-list.php?page=".$i."'>".$i."</a></li>";					
+								echo" <li class='page-item'><a class='page-link' href='./product-list.php?page=".$i."'>".$i."</a></li>";					
 								echo "</ul>";
                             }
                             ?>
