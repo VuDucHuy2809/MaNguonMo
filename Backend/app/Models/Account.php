@@ -47,7 +47,7 @@ class Account extends Authenticatable
     ];
         public static function getAll()
         {
-            return DB::select(' SELECT * FROM Accounts');
+            return DB::select(' SELECT * FROM Accounts Where is_admin=0');
         }
 
 }

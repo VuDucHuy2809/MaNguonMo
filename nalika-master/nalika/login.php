@@ -70,11 +70,10 @@
         <![endif]-->
 
     <div class="color-line"></div>
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-bottom: 150px;">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="back-link back-backend">
-                    <a href="index.php" class="btn btn-primary">Back to Home</a>
                 </div>
             </div>
         </div>
