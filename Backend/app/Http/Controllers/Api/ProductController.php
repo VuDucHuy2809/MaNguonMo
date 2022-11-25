@@ -41,7 +41,7 @@ class ProductController extends Controller
             'subcate_id'=>'required',
             'quantity'=>'required|numeric',
             'price' => 'required|numeric',
-            'sale_price'=>'required|numeric',
+            //'sale_price'=>'required|numeric',
             'image' =>'required',
             'description'=> 'required'
             //'status'=>'required'    
@@ -107,6 +107,7 @@ class ProductController extends Controller
             'price' => 'required',
             'description'=> 'required',
             'status'=>'required',
+            //'sale_price'=>'required',
             'subcate_id'=>'required'
         ]); 
         $product= Product::find($id);
@@ -116,6 +117,11 @@ class ProductController extends Controller
             $product->name = $request->name;
             $product->quantity = $request->quantity;
             $product->price = $request->price;
+            $product->sale_price = $request->sale_price;
+            if(is_null($product->sale_price))
+            {   
+                $product->sale_price = $request->price;
+            }
             $product->description = $request->description;
             $product->status  = $request->status;
             $product->subcate_id=$request->subcate_id;

@@ -1,3 +1,12 @@
+<?php
+        session_start();
+        if(!isset($_SESSION['token']))
+        {
+            echo "<script>
+            window.location.href='login.php';
+            </script>";
+        }
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 
