@@ -28,6 +28,7 @@ use App\Models\SubCategory;
 //
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::post('login/admin', [AuthController::class, 'loginAdmin']);
 
 //product
 

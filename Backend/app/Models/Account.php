@@ -48,9 +48,9 @@ class Account extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public static function getAll()
-    {
-        return DB::select(' SELECT * FROM Accounts');
-    }
+        public static function getAll()
+        {
+            return DB::select(' SELECT * FROM Accounts');
+        }
 
 }

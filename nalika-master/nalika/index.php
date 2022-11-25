@@ -1,4 +1,11 @@
 <?php
+        session_start();
+        if(!isset($_SESSION['token']))
+        {
+            echo "<script>
+            window.location.href='login.php';
+            </script>";
+        }
        $url1='http://localhost:8000/api/statistical1';
        $json1 = file_get_contents($url1);  
        $obj1 = json_decode($json1);
@@ -33,7 +40,7 @@
                 }
             }
        }
-       var_dump($v);
+       //var_dump($v);
 ?>
 <!doctype html>
 <html class="no-js" lang="en">

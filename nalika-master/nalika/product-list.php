@@ -1,3 +1,12 @@
+<?php
+        session_start();
+        if(!isset($_SESSION['token']))
+        {
+            echo "<script>
+            window.location.href='login.php';
+            </script>";
+        }
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -178,7 +187,7 @@ use Cloudinary\Transformation\Qualifier\Dimensions\Height;
                                                     <input type="text" placeholder="Search..." class="form-control">
                                                     <a href=""><i class="fa fa-search"></i></a>
                                                 </form>
-                                            </div>data
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">

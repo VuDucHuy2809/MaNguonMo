@@ -1,4 +1,14 @@
 <?php
+        session_start();
+        if(!isset($_SESSION['token']))
+        {
+            echo "<script>
+            window.location.href='login.php';
+            </script>";
+        }
+?>
+<?php
+ error_reporting(0);
   try
   {
     $data = array("name"=>$_GET['name'],
@@ -16,6 +26,10 @@
     $response  = curl_exec($ch);
     $resJSON=json_decode($response);
     $mess=$resJSON->message;
+    if(is_null($mess))
+    {
+      $mess="Update User Fail";
+    }
     //echo $response;
     curl_close($ch);
     echo "<script>

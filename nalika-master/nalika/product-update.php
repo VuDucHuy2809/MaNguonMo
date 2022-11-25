@@ -1,4 +1,5 @@
 <?php
+ error_reporting(0);
     try
     {
     $data = array("name"=>$_GET['name'],
@@ -6,6 +7,7 @@
                   "price"=>$_GET['price'],
                   "description"=>$_GET['description'],
                   "status"=>$_GET['status'],
+                  "sale_price"=>$_GET['sale_price'],
                   "subcate_id"=>$_GET['subcate_id']   
                 );
     $data_json = json_encode($data);
@@ -19,6 +21,10 @@
     $response  = curl_exec($ch);
     $resJSON=json_decode($response);
     $mess=$resJSON->message;
+    if(is_null($mess))
+    {
+      $mess="Update Product Fail";
+    }
     //echo $response;
     curl_close($ch);
     echo "<script>

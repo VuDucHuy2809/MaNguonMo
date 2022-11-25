@@ -76,6 +76,29 @@ class AuthController extends Controller
         }
         
     }
+    public function loginAdmin(Request $request)
+    {
+        $data = $request->validate([
+            'email'=>'required|email',
+            'password'=>'required|string',
+        ]);
+        $user = Account::where('email',$data['email'])->first();
+        if(!$user || !Hash::check($data['password'],$user->password) ||$user['is_admin']!=1)
+        {
+            return response(['message'=>'invalid Credentials'],401);
+
+        }
+        else
+        {
+            $token =$user->createToken('API TOKEN')->plainTextToken;
+            $response=[
+                'user'=>$user,
+                'token'=>$token
+            ];
+            return response($response,200);
+        }
+        
+    }
     public function logout(Request $request)
     {
         
