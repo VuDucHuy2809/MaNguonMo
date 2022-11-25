@@ -24,6 +24,10 @@ class Account extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'address',
+        'is_admin'
+
     ];
 
     /**

@@ -20,12 +20,17 @@ class AuthController extends Controller
             [
                 'name' => 'required',
                 'email' => 'required|email|unique:accounts,email',
+                'phone' => 'required',
+                'address' => ' required',
                 'password' => 'required'
             ]);
 
             $user = Account::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
+                'phone' => $data['phone'],
+                'address' => $data['address'],
+                'is_admin' => 0,
                 'password' => Hash::make($data['password'])
             ]);
 
